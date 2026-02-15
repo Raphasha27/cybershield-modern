@@ -1,0 +1,173 @@
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 space-y-6">
+  <!-- HEADER -->
+  <div class="flex justify-between items-center mb-8">
+    <div>
+      <h1 class="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
+        🛡️ CyberShield SOC Dashboard
+      </h1>
+      <p class="text-gray-400 mt-2">Real-time Security Operations Center</p>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="bg-green-500/20 text-green-400 px-4 py-2 rounded-xl border border-green-500/30 flex items-center gap-2">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        System Secure
+      </div>
+      <div class="text-right">
+        <p class="text-sm text-gray-400">{{ user?.name }}</p>
+        <p class="text-xs text-gray-500">{{ user?.role }}</p>
+      </div>
+      <button (click)="logout()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition">
+        Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-green-500/30 transition">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-gray-400 text-sm">Total Incidents</p>
+          <h3 class="text-4xl font-bold mt-2">{{ kpis.totalIncidents }}</h3>
+          <p class="text-xs text-red-400 mt-2">↑ 12% from last week</p>
+        </div>
+        <div class="text-4xl">📊</div>
+      </div>
+    </div>
+
+    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-red-500/30 transition">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-gray-400 text-sm">Active Threats</p>
+          <h3 class="text-4xl font-bold mt-2">{{ kpis.activeThreats }}</h3>
+          <p class="text-xs text-orange-400 mt-2">⚠️ Requires attention</p>
+        </div>
+        <div class="text-4xl">⚠️</div>
+      </div>
+    </div>
+
+    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-blue-500/30 transition">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-gray-400 text-sm">Servers Online</p>
+          <h3 class="text-4xl font-bold mt-2">{{ kpis.serversOnline }}/14</h3>
+          <p class="text-xs text-green-400 mt-2">✓ All operational</p>
+        </div>
+        <div class="text-4xl">🖥️</div>
+      </div>
+    </div>
+
+    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-purple-500/30 transition">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-gray-400 text-sm">Network Activity</p>
+          <h3 class="text-4xl font-bold mt-2">{{ kpis.networkActivity }}%</h3>
+          <p class="text-xs text-green-400 mt-2">↓ Normal levels</p>
+        </div>
+        <div class="text-4xl">📡</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS SECTION -->
+  <div class="grid lg:grid-cols-2 gap-6">
+    <!-- Threat Trend Chart -->
+    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
+      <h2 class="text-xl font-semibold mb-4">Threat Activity Trend</h2>
+      <canvas baseChart [data]="threatTrendData" [options]="threatTrendOptions" type="line"></canvas>
+    </div>
+
+    <!-- Severity Distribution -->
+    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
+      <h2 class="text-xl font-semibold mb-4">Incident Severity Distribution</h2>
+      <canvas baseChart [data]="severityData" [options]="severityOptions" type="doughnut"></canvas>
+    </div>
+  </div>
+
+  <!-- TABLE + ALERTS -->
+  <div class="grid lg:grid-cols-3 gap-6">
+    <!-- Recent Incidents Table -->
+    <div class="lg:col-span-2 bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
+      <h2 class="text-xl font-semibold mb-4">Recent Incidents</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="text-gray-400 border-b border-white/10">
+            <tr>
+              <th class="text-left py-3 px-2">ID</th>
+              <th class="text-left py-3 px-2">Type</th>
+              <th class="text-left py-3 px-2">Severity</th>
+              <th class="text-left py-3 px-2">Status</th>
+              <th class="text-left py-3 px-2">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let incident of recentIncidents" class="border-t border-white/5 hover:bg-white/5 transition">
+              <td class="py-3 px-2 font-mono text-blue-400">{{ incident.id }}</td>
+              <td class="py-3 px-2">{{ incident.type }}</td>
+              <td class="py-3 px-2">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold" 
+                      [style.backgroundColor]="getSeverityColor(incident.severity) + '20'"
+                      [style.color]="getSeverityColor(incident.severity)">
+                  {{ incident.severity }}
+                </span>
+              </td>
+              <td class="py-3 px-2">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold"
+                      [style.backgroundColor]="getStatusColor(incident.status) + '20'"
+                      [style.color]="getStatusColor(incident.status)">
+                  {{ incident.status }}
+                </span>
+              </td>
+              <td class="py-3 px-2 text-gray-400">{{ incident.time }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Live Alerts Feed -->
+    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
+      <h2 class="text-xl font-semibold mb-4">🔔 Live Alerts</h2>
+      <div class="space-y-3">
+        <div *ngFor="let alert of liveAlerts" 
+             class="p-4 rounded-lg border transition"
+             [ngClass]="{
+               'bg-red-500/10 border-red-500/30': alert.type === 'Critical',
+               'bg-orange-500/10 border-orange-500/30': alert.type === 'High',
+               'bg-yellow-500/10 border-yellow-500/30': alert.type === 'Medium',
+               'bg-green-500/10 border-green-500/30': alert.type === 'Info'
+             }">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">{{ alert.icon }}</span>
+            <div class="flex-1">
+              <p class="text-sm font-semibold">{{ alert.message }}</p>
+              <p class="text-xs text-gray-400 mt-1">{{ alert.time }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYSTEM HEALTH -->
+  <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
+    <h2 class="text-xl font-semibold mb-6">System Health Status</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div *ngFor="let health of systemHealth">
+        <div class="flex justify-between items-center mb-2">
+          <p class="text-sm font-semibold">{{ health.name }}</p>
+          <p class="text-sm font-bold text-green-400">{{ health.status }}%</p>
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+          <div class="bg-gradient-to-r from-green-500 to-emerald-400 h-3 rounded-full transition-all"
+               [style.width.%]="health.status"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="text-center text-gray-500 text-xs pt-6 border-t border-white/10">
+    <p>Last updated: {{ 'now' | date: 'short' }} | CyberShield SOC v1.0</p>
+  </div>
+</div>
