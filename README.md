@@ -1,5 +1,5 @@
 # Kivoc Denamic Technology - Premium Internet Cafe Hub
-📍 **11 Maubane Street, Atteridgeville**
+📍 **Atteridgeville**
 
 ![Status](https://img.shields.io/badge/Status-Platform_Manager-success?style=flat-square)
 
