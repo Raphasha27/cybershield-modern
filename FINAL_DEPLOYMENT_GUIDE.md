@@ -117,22 +117,17 @@ git push origin master
 
 ## 🌐 Your Live URLs
 
-Once deployed, you'll have:
+Once deployed, your app will be live at:
 
-1. **Primary (Vercel):**
-   ```
-   https://your-project.vercel.app
-   ```
+**Production (Vercel):**
+```
+https://cybershield-soc.vercel.app
+```
 
-2. **Backup (GitHub Pages):**
-   ```
-   https://raphasha27.github.io/cybershield-modern/
-   ```
-
-3. **Local Development:**
-   ```
-   http://localhost:4200
-   ```
+**Local Development:**
+```
+http://localhost:4200
+```
 
 ---
 
@@ -141,8 +136,7 @@ Once deployed, you'll have:
 ### Share These Links
 
 **Live Demo:**
-- Vercel: `https://your-project.vercel.app`
-- GitHub Pages: `https://raphasha27.github.io/cybershield-modern/`
+- Vercel: `https://cybershield-soc.vercel.app`
 
 **Source Code:**
 - GitHub: `https://github.com/Raphasha27/cybershield-modern`

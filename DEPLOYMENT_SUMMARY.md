@@ -10,7 +10,7 @@ Your enhanced CyberShield SOC dashboard has been successfully deployed!
 
 **Your application is now live at:**
 
-### 🔗 https://raphasha27.github.io/cybershield-modern/
+### 🔗 https://cybershield-soc.vercel.app
 
 ---
 
@@ -47,50 +47,42 @@ Your enhanced CyberShield SOC dashboard has been successfully deployed!
 
 ---
 
-## 🔧 GitHub Pages Setup
+## 🔧 Vercel Deployment
 
 ### Automatic Deployment
 
-Your repository is configured for automatic deployment:
+Your repository is configured for automatic deployment to Vercel:
 
-1. **Workflow File**: `.github/workflows/github-pages.yml`
+1. **Platform**: Vercel
 2. **Trigger**: Pushes to `master` or `main` branch
-3. **Build Command**: `npm run build:gh-pages`
-4. **Deploy Target**: GitHub Pages
+3. **Build Command**: `npm run vercel-build`
+4. **Deploy Target**: Vercel Edge Network
 
 ### Manual Deployment
 
-If you need to manually trigger deployment:
+Deploy to Vercel:
 
-1. Go to your repository on GitHub
-2. Click **Actions** tab
-3. Select **Deploy to GitHub Pages** workflow
-4. Click **Run workflow**
-5. Select branch and click **Run workflow**
+1. Go to [vercel.com](https://vercel.com)
+2. Import your GitHub repository
+3. Configure build settings (see VERCEL_DEPLOYMENT.md)
+4. Deploy!
 
 ---
 
 ## 📝 Next Steps
 
-### 1. Enable GitHub Pages (If Not Already Enabled)
+### 1. Deploy to Vercel
 
-1. Go to your repository: https://github.com/Raphasha27/cybershield-modern
-2. Click **Settings** tab
-3. Scroll to **Pages** section (left sidebar)
-4. Under **Source**, select:
-   - Source: **GitHub Actions**
-5. Click **Save**
+1. Go to [vercel.com](https://vercel.com)
+2. Sign in with GitHub
+3. Import repository: `Raphasha27/cybershield-modern`
+4. Configure settings (see VERCEL_DEPLOYMENT.md)
+5. Deploy!
 
-### 2. Wait for Deployment
-
-- The first deployment takes 2-5 minutes
-- Check the **Actions** tab to monitor progress
-- Look for a green checkmark ✅ when complete
-
-### 3. Access Your Live Site
+### 2. Access Your Live Site
 
 Once deployed, visit:
-**https://raphasha27.github.io/cybershield-modern/**
+**https://cybershield-soc.vercel.app**
 
 ---
 
@@ -143,9 +135,8 @@ Once deployed, visit:
 
 | Resource | URL |
 |----------|-----|
-| **Live Demo** | https://raphasha27.github.io/cybershield-modern/ |
+| **Live Demo** | https://cybershield-soc.vercel.app |
 | **GitHub Repository** | https://github.com/Raphasha27/cybershield-modern |
-| **GitHub Actions** | https://github.com/Raphasha27/cybershield-modern/actions |
 | **Issues** | https://github.com/Raphasha27/cybershield-modern/issues |
 | **Pull Requests** | https://github.com/Raphasha27/cybershield-modern/pulls |
 
