@@ -1,11 +1,12 @@
 {
   "version": 2,
+  "name": "cybershield-soc",
   "builds": [
     {
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist/cybershield-modern"
+        "distDir": "dist/cybershield-soc/browser"
       }
     }
   ],
@@ -15,7 +16,8 @@
       "dest": "/index.html"
     }
   ],
-  "env": {
-    "ANGULAR_ENVIRONMENT": "production"
-  }
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/cybershield-soc/browser",
+  "framework": "angular",
+  "installCommand": "npm install"
 }
