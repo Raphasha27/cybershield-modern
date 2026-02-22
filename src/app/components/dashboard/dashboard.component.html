@@ -1,173 +1,608 @@
-<div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 space-y-6">
-  <!-- HEADER -->
-  <div class="flex justify-between items-center mb-8">
-    <div>
-      <h1 class="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-        🛡️ CyberShield SOC Dashboard
-      </h1>
-      <p class="text-gray-400 mt-2">Real-time Security Operations Center</p>
-    </div>
-    <div class="flex items-center gap-4">
-      <div class="bg-green-500/20 text-green-400 px-4 py-2 rounded-xl border border-green-500/30 flex items-center gap-2">
-        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-        System Secure
+<div class="soc-dashboard">
+  <div class="binary-bg" aria-hidden="true">
+    <div class="binary-bg-inner">{{ binaryStream }}</div>
+  </div>
+  <!-- Header -->
+  <header class="soc-header">
+    <a routerLink="/dashboard" class="header-left header-left-link">
+      <div class="logo-shield">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2" fill="rgba(0,0,0,0.3)"/>
+          <path d="M20 8 L28 12 L28 20 Q28 28 20 32 Q12 28 12 20 L12 12 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <text x="20" y="24" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="system-ui">C</text>
+        </svg>
       </div>
-      <div class="text-right">
-        <p class="text-sm text-gray-400">{{ user?.name }}</p>
-        <p class="text-xs text-gray-500">{{ user?.role }}</p>
+      <div class="header-title-block">
+        <h1 class="header-title">CyberShield SOC Dashboard</h1>
+        <p class="header-subtitle">Real-time Security Operations Center Enterprise Suite</p>
       </div>
-      <button (click)="logout()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition">
-        Logout
+    </a>
+    <div class="header-right">
+      <div class="header-search-wrap">
+        <input type="text" class="header-search" placeholder="Search incidents, threats..." [(ngModel)]="searchQuery" />
+        <span class="header-search-icon" aria-hidden="true">⌕</span>
+      </div>
+      <div class="header-refresh-wrap">
+        <label class="header-refresh-label" for="refresh-select">Refresh</label>
+        <select id="refresh-select" class="header-refresh-select" [ngModel]="refreshInterval" (ngModelChange)="setRefreshInterval($event)">
+          <option *ngFor="let opt of refreshIntervalOptions" [value]="opt.value">{{ opt.label }}</option>
+        </select>
+      </div>
+      <div class="header-notifications-wrap">
+        <button type="button" class="header-btn header-btn-icon" title="Notifications" (click)="toggleNotifications()" [class.active]="notificationsOpen">
+          <span class="icon-bell"></span>
+          <span class="notification-badge">{{ liveAlerts.length }}</span>
+        </button>
+        <div class="notifications-dropdown" [class.open]="notificationsOpen">
+          <div class="notifications-dropdown-header">Alerts</div>
+          <div *ngFor="let alert of liveAlerts" class="notifications-item" [ngClass]="'notifications-item-' + (alert.type || '').toLowerCase()">
+            <span class="notifications-item-icon">{{ alert.icon }}</span>
+            <span class="notifications-item-text">{{ alert.message }}</span>
+            <span class="notifications-item-time">{{ alert.time }}</span>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="header-btn header-btn-icon" title="Toggle theme" (click)="toggleTheme()">
+        <span class="icon-theme" [attr.data-theme]="themeService.theme"></span>
+      </button>
+      <button type="button" class="header-btn" title="System Settings" (click)="goToSettings()">
+        <span class="icon-lock"></span>
+        <span class="header-btn-text">System Settings</span>
+      </button>
+      <button type="button" class="header-btn" title="Admin" (click)="goToAdmin()">
+        <span class="icon-user"></span>
+        <span class="header-btn-text">Admin</span>
+      </button>
+      <button type="button" class="header-btn logout-btn" (click)="logout()">
+        <span>Logout</span>
+        <span class="icon-arrow"></span>
       </button>
     </div>
-  </div>
+  </header>
 
-  <!-- KPI CARDS -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-green-500/30 transition">
-      <div class="flex justify-between items-start">
-        <div>
-          <p class="text-gray-400 text-sm">Total Incidents</p>
-          <h3 class="text-4xl font-bold mt-2">{{ kpis.totalIncidents }}</h3>
-          <p class="text-xs text-red-400 mt-2">↑ 12% from last week</p>
-        </div>
-        <div class="text-4xl">📊</div>
+  <!-- Security Score + KPI Cards -->
+  <section class="kpi-grid animate-in" style="animation-delay: 0.05s">
+    <div class="kpi-card security-score-card">
+      <p class="kpi-label">Security Score</p>
+      <div class="kpi-value-row">
+        <span class="kpi-value security-score-value">{{ securityScore }}</span>
+        <span class="security-score-max">/100</span>
+      </div>
+      <div class="security-score-bar">
+        <div class="security-score-fill" [style.width.%]="securityScore"></div>
+      </div>
+      <p class="kpi-trend kpi-trend-up" *ngIf="securityScoreTrend === 'up'">↑ Improved</p>
+      <p class="kpi-trend kpi-trend-normal" *ngIf="securityScoreTrend === 'neutral'">— Stable</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Total Incidents</p>
+      <div class="kpi-value-row">
+        <span class="kpi-value">{{ kpis.totalIncidents }}</span>
+        <span class="kpi-icon kpi-icon-chart"></span>
+      </div>
+      <p class="kpi-trend kpi-trend-up">
+        <span class="trend-arrow">↑</span> 12% from last week
+      </p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Active Threats</p>
+      <div class="kpi-value-row">
+        <span class="kpi-value">{{ kpis.activeThreats }}</span>
+      </div>
+      <p class="kpi-trend kpi-trend-warning">
+        <span class="trend-icon-warning">▲</span> Requires attention
+      </p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Servers Online</p>
+      <div class="kpi-value-row">
+        <span class="kpi-value">{{ kpis.serversOnline }}/14</span>
+        <span class="kpi-icon kpi-icon-server"></span>
+      </div>
+      <p class="kpi-trend kpi-trend-ok">
+        <span class="trend-icon-ok">✓</span> All operational
+      </p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Network Activity</p>
+      <div class="kpi-value-row">
+        <span class="kpi-value">{{ kpis.networkActivity }}%</span>
+        <span class="kpi-icon kpi-icon-satellite"></span>
+      </div>
+      <p class="kpi-trend kpi-trend-normal">
+        <span class="trend-arrow">↓</span> Managed loads
+      </p>
+    </div>
+  </section>
+
+  <!-- Top-right panels: AI Prediction, Speakers, Upgrade -->
+  <section class="top-panels-row animate-in" style="animation-delay: 0.1s">
+    <div class="panel-card ai-prediction-panel">
+      <div class="panel-header-row">
+        <span class="panel-icon panel-icon-brain"></span>
+        <span class="panel-title">AI Threat Prediction</span>
+      </div>
+      <p class="ai-certainty">78% certainty</p>
+      <p class="ai-description">Phishing attempted, detection and mitigation done.</p>
+    </div>
+    <div class="panel-card speakers-panel">
+      <div class="panel-header-row">
+        <span class="panel-icon panel-icon-mic"></span>
+        <span class="panel-value">8</span>
+      </div>
+      <p class="panel-label">Speakers Online</p>
+      <div class="panel-actions">
+        <a routerLink="/speakers" class="panel-action-btn">Annotation Time</a>
+        <a routerLink="/speakers" class="panel-action-btn">Snooze</a>
       </div>
     </div>
-
-    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-red-500/30 transition">
-      <div class="flex justify-between items-start">
-        <div>
-          <p class="text-gray-400 text-sm">Active Threats</p>
-          <h3 class="text-4xl font-bold mt-2">{{ kpis.activeThreats }}</h3>
-          <p class="text-xs text-orange-400 mt-2">⚠️ Requires attention</p>
-        </div>
-        <div class="text-4xl">⚠️</div>
+    <div class="panel-card compliance-panel">
+      <div class="panel-header-row">
+        <span class="panel-title">Compliance</span>
+      </div>
+      <div *ngFor="let c of compliance" class="compliance-item">
+        <span class="compliance-name">{{ c.name }}</span>
+        <span class="compliance-score" [class.compliance-ok]="c.score >= 90">{{ c.score }}%</span>
+        <span class="compliance-status">{{ c.status }}</span>
       </div>
     </div>
+    <a routerLink="/upgrade" class="upgrade-scope-btn">Upgrade Scope <span class="arrow">›</span></a>
+  </section>
 
-    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-blue-500/30 transition">
-      <div class="flex justify-between items-start">
-        <div>
-          <p class="text-gray-400 text-sm">Servers Online</p>
-          <h3 class="text-4xl font-bold mt-2">{{ kpis.serversOnline }}/14</h3>
-          <p class="text-xs text-green-400 mt-2">✓ All operational</p>
-        </div>
-        <div class="text-4xl">🖥️</div>
+  <!-- Enhanced Charts + System Health + Activity Log + Network Traffic -->
+  <section class="charts-row charts-row-four animate-in" style="animation-delay: 0.15s">
+    <div class="chart-card">
+      <h2 class="chart-title">Threat Activity Trend</h2>
+      <div class="chart-wrap">
+        <canvas baseChart [data]="threatTrendData" [options]="threatTrendOptions" type="line"></canvas>
       </div>
     </div>
-
-    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-purple-500/30 transition">
-      <div class="flex justify-between items-start">
-        <div>
-          <p class="text-gray-400 text-sm">Network Activity</p>
-          <h3 class="text-4xl font-bold mt-2">{{ kpis.networkActivity }}%</h3>
-          <p class="text-xs text-green-400 mt-2">↓ Normal levels</p>
-        </div>
-        <div class="text-4xl">📡</div>
+    <div class="chart-card">
+      <h2 class="chart-title">Network Traffic</h2>
+      <div class="chart-wrap">
+        <canvas baseChart [data]="networkTrafficData" [options]="networkTrafficOptions" type="bar"></canvas>
       </div>
     </div>
-  </div>
-
-  <!-- CHARTS SECTION -->
-  <div class="grid lg:grid-cols-2 gap-6">
-    <!-- Threat Trend Chart -->
-    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
-      <h2 class="text-xl font-semibold mb-4">Threat Activity Trend</h2>
-      <canvas baseChart [data]="threatTrendData" [options]="threatTrendOptions" type="line"></canvas>
+    <div class="chart-card protection-card">
+      <h2 class="chart-title">Employee &amp; Manager Protection</h2>
+      <div class="protection-icons">
+        <div class="protection-item" title="Secure">
+          <span class="protection-circle"><span class="icon-person"></span></span>
+          <span class="protection-label">Secure</span>
+        </div>
+        <div class="protection-item" title="Access">
+          <span class="protection-circle"><span class="icon-key"></span></span>
+          <span class="protection-label">Access</span>
+        </div>
+        <div class="protection-item" title="Realtime">
+          <span class="protection-circle"><span class="icon-clock"></span></span>
+          <span class="protection-label">Realtime</span>
+        </div>
+        <div class="protection-item protection-item-alert" title="Firewall">
+          <span class="protection-circle"><span class="icon-firewall"></span><span class="alert-dot"></span></span>
+          <span class="protection-label">Firewall</span>
+        </div>
+        <div class="protection-item" title="Antivirus">
+          <span class="protection-circle"><span class="icon-shield"></span></span>
+          <span class="protection-label">Antivirus</span>
+        </div>
+        <div class="protection-item" title="Backup">
+          <span class="protection-circle"><span class="icon-cloud"></span></span>
+          <span class="protection-label">Backup</span>
+        </div>
+      </div>
     </div>
-
-    <!-- Severity Distribution -->
-    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
-      <h2 class="text-xl font-semibold mb-4">Incident Severity Distribution</h2>
-      <canvas baseChart [data]="severityData" [options]="severityOptions" type="doughnut"></canvas>
+    <div class="chart-card activity-card">
+      <h2 class="chart-title">Activity Log</h2>
+      <div class="activity-list">
+        <div *ngFor="let log of activityLog" class="activity-item" [ngClass]="'activity-' + log.level">
+          <span class="activity-time">{{ log.time }}</span>
+          <span class="activity-event">{{ log.event }}</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- TABLE + ALERTS -->
-  <div class="grid lg:grid-cols-3 gap-6">
-    <!-- Recent Incidents Table -->
-    <div class="lg:col-span-2 bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
-      <h2 class="text-xl font-semibold mb-4">Recent Incidents</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm">
-          <thead class="text-gray-400 border-b border-white/10">
+  <!-- Enhanced System Health Section -->
+  <section class="system-health-section animate-in" style="animation-delay: 0.18s">
+    <div class="system-health-card">
+      <div class="block-title-row">
+        <h2 class="block-title">System Health Monitor</h2>
+        <button type="button" class="refresh-btn" (click)="refreshDashboard()" title="Refresh Dashboard">
+          <span class="icon-refresh">🔄</span>
+        </button>
+      </div>
+      <div class="health-grid">
+        <div *ngFor="let system of systemHealth" class="health-item">
+          <div class="health-header">
+            <span class="health-name">{{ system.name }}</span>
+            <span class="health-trend" [innerHTML]="getTrendIcon(system.trend)"></span>
+          </div>
+          <div class="health-status-row">
+            <div class="health-bar">
+              <div class="health-fill" 
+                   [style.width.%]="system.status" 
+                   [style.background-color]="getSystemHealthColor(system.status)">
+              </div>
+            </div>
+            <span class="health-percentage" [style.color]="getSystemHealthColor(system.status)">
+              {{ system.status }}%
+            </span>
+          </div>
+          <span class="health-last-check">{{ system.lastCheck }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Threat Intelligence Section -->
+  <section class="threat-intel-section animate-in" style="animation-delay: 0.2s">
+    <div class="threat-intel-card">
+      <h2 class="block-title">Threat Intelligence Dashboard</h2>
+      <div class="threat-intel-grid">
+        <div class="intel-metric">
+          <span class="intel-value">{{ threatIntelligence.totalThreatsBlocked }}</span>
+          <span class="intel-label">Threats Blocked</span>
+        </div>
+        <div class="intel-metric">
+          <span class="intel-value">{{ threatIntelligence.malwareDetected }}</span>
+          <span class="intel-label">Malware Detected</span>
+        </div>
+        <div class="intel-metric">
+          <span class="intel-value">{{ threatIntelligence.phishingAttempts }}</span>
+          <span class="intel-label">Phishing Attempts</span>
+        </div>
+        <div class="intel-metric">
+          <span class="intel-value">{{ threatIntelligence.suspiciousIPs }}</span>
+          <span class="intel-label">Suspicious IPs</span>
+        </div>
+        <div class="intel-metric">
+          <span class="intel-value">{{ threatIntelligence.vulnerabilitiesPatched }}</span>
+          <span class="intel-label">Vulnerabilities Patched</span>
+        </div>
+        <div class="intel-metric">
+          <span class="intel-value">{{ threatIntelligence.securityAlertsToday }}</span>
+          <span class="intel-label">Security Alerts Today</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Geographic Threats Section -->
+  <section class="geo-threats-section animate-in" style="animation-delay: 0.22s">
+    <div class="geo-threats-card">
+      <h2 class="block-title">Geographic Threat Analysis</h2>
+      <div class="geo-threats-list">
+        <div *ngFor="let threat of geographicThreats" class="geo-threat-item">
+          <span class="geo-country">{{ threat.country }}</span>
+          <div class="geo-threat-bar">
+            <div class="geo-threat-fill" 
+                 [style.width.%]="(threat.threats / 50) * 100"
+                 [style.background-color]="getThreatSeverityColor(threat.severity)">
+            </div>
+          </div>
+          <span class="geo-threat-count" [style.color]="getThreatSeverityColor(threat.severity)">
+            {{ threat.threats }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom: Recent Incidents (left) + Enterprise Vulnerability Scan (right) -->
+  <section class="bottom-section two-col animate-in" style="animation-delay: 0.2s">
+    <div class="incidents-block">
+      <div class="block-title-row">
+        <h2 class="block-title">Recent Incidents</h2>
+        <div class="block-actions">
+          <button type="button" class="export-csv-btn" (click)="exportCsv()">Export CSV</button>
+          <a routerLink="/incidents" class="view-all-link">View all →</a>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="incidents-table">
+          <thead>
             <tr>
-              <th class="text-left py-3 px-2">ID</th>
-              <th class="text-left py-3 px-2">Type</th>
-              <th class="text-left py-3 px-2">Severity</th>
-              <th class="text-left py-3 px-2">Status</th>
-              <th class="text-left py-3 px-2">Time</th>
+              <th>ID</th>
+              <th>Type</th>
+              <th>Severity</th>
+              <th>Status</th>
+              <th>Time</th>
+              <th>Threats</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let incident of recentIncidents" class="border-t border-white/5 hover:bg-white/5 transition">
-              <td class="py-3 px-2 font-mono text-blue-400">{{ incident.id }}</td>
-              <td class="py-3 px-2">{{ incident.type }}</td>
-              <td class="py-3 px-2">
-                <span class="px-3 py-1 rounded-full text-xs font-semibold" 
-                      [style.backgroundColor]="getSeverityColor(incident.severity) + '20'"
-                      [style.color]="getSeverityColor(incident.severity)">
+            <tr *ngFor="let incident of recentIncidents; let i = index" [class.row-highlight]="i === 0">
+              <td class="col-id">{{ incident.id }}</td>
+              <td>{{ incident.type }}</td>
+              <td>
+                <span class="badge badge-severity" [ngClass]="'badge-' + (incident.severity || '').toLowerCase()">
                   {{ incident.severity }}
                 </span>
               </td>
-              <td class="py-3 px-2">
-                <span class="px-3 py-1 rounded-full text-xs font-semibold"
-                      [style.backgroundColor]="getStatusColor(incident.status) + '20'"
-                      [style.color]="getStatusColor(incident.status)">
+              <td>
+                <span class="badge badge-status" [ngClass]="'badge-status-' + (incident.status || '').toLowerCase()">
                   {{ incident.status }}
                 </span>
               </td>
-              <td class="py-3 px-2 text-gray-400">{{ incident.time }}</td>
+              <td>{{ incident.time }}</td>
+              <td class="col-threats">{{ incident.threats }}</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <div class="live-alerts-bar">
+        <span class="live-alerts-icon live-alerts-bell"></span>
+        <span class="live-alerts-text">Live Alerts</span>
+      </div>
     </div>
-
-    <!-- Live Alerts Feed -->
-    <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
-      <h2 class="text-xl font-semibold mb-4">🔔 Live Alerts</h2>
-      <div class="space-y-3">
-        <div *ngFor="let alert of liveAlerts" 
-             class="p-4 rounded-lg border transition"
-             [ngClass]="{
-               'bg-red-500/10 border-red-500/30': alert.type === 'Critical',
-               'bg-orange-500/10 border-orange-500/30': alert.type === 'High',
-               'bg-yellow-500/10 border-yellow-500/30': alert.type === 'Medium',
-               'bg-green-500/10 border-green-500/30': alert.type === 'Info'
-             }">
-          <div class="flex items-start gap-3">
-            <span class="text-xl">{{ alert.icon }}</span>
-            <div class="flex-1">
-              <p class="text-sm font-semibold">{{ alert.message }}</p>
-              <p class="text-xs text-gray-400 mt-1">{{ alert.time }}</p>
+    <div class="vuln-scan-block">
+      <div class="block-title-row">
+        <h2 class="block-title">Global Threat Intelligence Map</h2>
+        <div class="map-legend">
+          <span class="legend-item"><span class="legend-dot high"></span>High Risk</span>
+          <span class="legend-item"><span class="legend-dot medium"></span>Medium Risk</span>
+          <span class="legend-item"><span class="legend-dot low"></span>Low Risk</span>
+        </div>
+      </div>
+      <div class="world-map-wrap" [class.scanning]="isScanning">
+        <svg class="world-map" viewBox="0 0 1000 461" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="mapOcean" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#0d1629"/>
+              <stop offset="100%" style="stop-color:#0a0e1a"/>
+            </linearGradient>
+            <linearGradient id="mapVulnHigh" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:rgba(239,68,68,0.7)"/>
+              <stop offset="100%" style="stop-color:rgba(239,68,68,0.3)"/>
+            </linearGradient>
+            <linearGradient id="mapVulnMedium" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:rgba(249,115,22,0.6)"/>
+              <stop offset="100%" style="stop-color:rgba(249,115,22,0.2)"/>
+            </linearGradient>
+            <filter id="mapGlow"><feGaussianBlur stdDeviation="1.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="pulseGlow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          
+          <!-- Ocean background -->
+          <rect width="1000" height="461" fill="url(#mapOcean)" stroke="rgba(0,212,255,0.25)" stroke-width="1"/>
+          
+          <!-- Continents with threat levels -->
+          <!-- North America - High Risk -->
+          <path class="map-land map-vuln-high clickable-region" 
+                data-region="North America" 
+                data-threats="45" 
+                data-severity="high"
+                (click)="showRegionDetails('North America')"
+                d="M 127,89 238,78 298,118 312,178 282,228 218,248 152,238 100,180 Z" 
+                fill="url(#mapVulnHigh)" 
+                filter="url(#mapGlow)" 
+                stroke="rgba(239,68,68,0.6)" 
+                stroke-width="1"/>
+          
+          <!-- South America - Low Risk -->
+          <path class="map-land clickable-region" 
+                data-region="South America" 
+                data-threats="12" 
+                data-severity="low"
+                (click)="showRegionDetails('South America')"
+                d="M 152,258 248,242 292,302 276,368 208,398 132,378 88,318 Z" 
+                fill="rgba(34,197,94,0.15)" 
+                stroke="rgba(34,197,94,0.3)" 
+                stroke-width="0.8"/>
+          
+          <!-- Europe - High Risk -->
+          <path class="map-land map-vuln-high clickable-region" 
+                data-region="Europe" 
+                data-threats="38" 
+                data-severity="high"
+                (click)="showRegionDetails('Europe')"
+                d="M 318,98 418,82 488,122 508,192 478,258 398,278 328,248 292,178 Z" 
+                fill="url(#mapVulnHigh)" 
+                filter="url(#mapGlow)" 
+                stroke="rgba(239,68,68,0.6)" 
+                stroke-width="1"/>
+          
+          <!-- Africa - Medium Risk -->
+          <path class="map-land map-vuln-medium clickable-region" 
+                data-region="Africa" 
+                data-threats="23" 
+                data-severity="medium"
+                (click)="showRegionDetails('Africa')"
+                d="M 398,288 488,268 528,328 518,398 458,428 378,418 338,358 Z" 
+                fill="url(#mapVulnMedium)" 
+                stroke="rgba(249,115,22,0.5)" 
+                stroke-width="0.8"/>
+          
+          <!-- Asia - High Risk -->
+          <path class="map-land map-vuln-high clickable-region" 
+                data-region="Asia" 
+                data-threats="67" 
+                data-severity="high"
+                (click)="showRegionDetails('Asia')"
+                d="M 518,128 718,108 848,158 888,248 858,328 758,358 598,338 528,258 Z" 
+                fill="url(#mapVulnHigh)" 
+                filter="url(#mapGlow)" 
+                stroke="rgba(239,68,68,0.6)" 
+                stroke-width="1"/>
+          
+          <!-- Australia - Low Risk -->
+          <path class="map-land clickable-region" 
+                data-region="Australia" 
+                data-threats="8" 
+                data-severity="low"
+                (click)="showRegionDetails('Australia')"
+                d="M 768,368 858,348 898,408 878,456 798,458 738,418 Z" 
+                fill="rgba(34,197,94,0.15)" 
+                stroke="rgba(34,197,94,0.3)" 
+                stroke-width="0.8"/>
+          
+          <!-- Active scan points with enhanced animations -->
+          <g class="scan-points">
+            <circle cx="220" cy="168" r="6" fill="rgba(0,212,255,0.95)" class="scan-dot active" filter="url(#pulseGlow)">
+              <animate attributeName="r" values="4;8;4" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="420" cy="188" r="5" fill="rgba(0,212,255,0.8)" class="scan-dot"/>
+            <circle cx="720" cy="228" r="7" fill="rgba(0,212,255,0.95)" class="scan-dot active" filter="url(#pulseGlow)">
+              <animate attributeName="r" values="5;9;5" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="340" cy="348" r="5" fill="rgba(0,212,255,0.7)" class="scan-dot"/>
+            <circle cx="580" cy="200" r="6" fill="rgba(239,68,68,0.9)" class="threat-dot" filter="url(#pulseGlow)">
+              <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+          
+          <!-- Scanning radar sweep -->
+          <g class="radar-sweep" *ngIf="isScanning">
+            <path d="M 500,230 L 500,50 A 180,180 0 0,1 680,230 Z" 
+                  fill="rgba(0,212,255,0.1)" 
+                  stroke="rgba(0,212,255,0.3)" 
+                  stroke-width="1"
+                  transform-origin="500 230">
+              <animateTransform attributeName="transform" 
+                                type="rotate" 
+                                values="0 500 230;360 500 230" 
+                                dur="4s" 
+                                repeatCount="indefinite"/>
+            </path>
+          </g>
+        </svg>
+        
+        <!-- Region tooltip -->
+        <div class="region-tooltip" *ngIf="selectedRegion" [style.left.px]="tooltipX" [style.top.px]="tooltipY">
+          <div class="tooltip-header">{{ selectedRegion.name }}</div>
+          <div class="tooltip-content">
+            <div class="tooltip-stat">
+              <span class="stat-label">Active Threats:</span>
+              <span class="stat-value" [ngClass]="'severity-' + selectedRegion.severity">{{ selectedRegion.threats }}</span>
+            </div>
+            <div class="tooltip-stat">
+              <span class="stat-label">Risk Level:</span>
+              <span class="stat-value" [ngClass]="'severity-' + selectedRegion.severity">{{ selectedRegion.severity | titlecase }}</span>
+            </div>
+            <div class="tooltip-stat">
+              <span class="stat-label">Last Scan:</span>
+              <span class="stat-value">{{ selectedRegion.lastScan }}</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- SYSTEM HEALTH -->
-  <div class="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10">
-    <h2 class="text-xl font-semibold mb-6">System Health Status</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div *ngFor="let health of systemHealth">
-        <div class="flex justify-between items-center mb-2">
-          <p class="text-sm font-semibold">{{ health.name }}</p>
-          <p class="text-sm font-bold text-green-400">{{ health.status }}%</p>
+      
+      <div class="vuln-controls">
+        <button type="button" class="vuln-circle-btn" title="Scan documents" (click)="goToScan('documents')">
+          <span class="vuln-circle-icon vuln-icon-doc"></span>
+        </button>
+        <button type="button" class="vuln-circle-btn" title="Databases" (click)="goToScan('databases')">
+          <span class="vuln-circle-icon vuln-icon-db"></span>
+        </button>
+        <button type="button" class="vuln-circle-btn" title="Network scan" (click)="goToScan('network')">
+          <span class="vuln-circle-icon vuln-icon-network"></span>
+        </button>
+        <button type="button" class="vuln-circle-btn vuln-mode-btn" 
+                [class.scanning]="isScanning" 
+                title="Toggle scan mode" 
+                (click)="toggleScanMode()">
+          <span class="vuln-mode-label">{{ isScanning ? 'SCANNING' : 'SCAN MODE' }}</span>
+          <span class="vuln-mode-arrow">{{ isScanning ? '⏸' : '▶' }}</span>
+        </button>
+      </div>
+      
+      <!-- Real-time threat feed -->
+      <div class="threat-feed">
+        <div class="feed-header">
+          <span class="feed-title">Live Threat Feed</span>
+          <span class="feed-status" [class.active]="threatFeedActive">● LIVE</span>
         </div>
-        <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-          <div class="bg-gradient-to-r from-green-500 to-emerald-400 h-3 rounded-full transition-all"
-               [style.width.%]="health.status"></div>
+        <div class="feed-items">
+          <div *ngFor="let threat of liveThreatFeed" class="feed-item" [ngClass]="'severity-' + threat.severity">
+            <span class="feed-time">{{ threat.time }}</span>
+            <span class="feed-location">{{ threat.location }}</span>
+            <span class="feed-description">{{ threat.description }}</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- FOOTER -->
-  <div class="text-center text-gray-500 text-xs pt-6 border-t border-white/10">
-    <p>Last updated: {{ 'now' | date: 'short' }} | CyberShield SOC v1.0</p>
-  </div>
+  <!-- AI Assistant Panel -->
+  <section class="ai-assistant-section animate-in" style="animation-delay: 0.25s">
+    <div class="ai-assistant-card">
+      <div class="ai-header">
+        <div class="ai-avatar">
+          <span class="ai-icon">🤖</span>
+          <div class="ai-pulse"></div>
+        </div>
+        <div class="ai-info">
+          <h3 class="ai-title">CyberShield AI Assistant</h3>
+          <p class="ai-status" [class.active]="aiAssistant.isActive">
+            {{ aiAssistant.isActive ? 'Online & Monitoring' : 'Standby Mode' }}
+          </p>
+        </div>
+        <button class="ai-toggle" (click)="toggleAI()" [class.active]="aiAssistant.isActive">
+          {{ aiAssistant.isActive ? 'Pause' : 'Activate' }}
+        </button>
+      </div>
+      
+      <div class="ai-predictions">
+        <h4 class="predictions-title">AI Predictions & Recommendations</h4>
+        <div class="predictions-grid">
+          <div *ngFor="let prediction of aiAssistant.predictions" class="prediction-card" [ngClass]="'priority-' + prediction.priority">
+            <div class="prediction-header">
+              <span class="prediction-icon">{{ prediction.icon }}</span>
+              <span class="prediction-confidence">{{ prediction.confidence }}% confidence</span>
+            </div>
+            <h5 class="prediction-title">{{ prediction.title }}</h5>
+            <p class="prediction-description">{{ prediction.description }}</p>
+            <div class="prediction-actions">
+              <button class="prediction-btn primary" (click)="executePrediction(prediction)">
+                {{ prediction.action }}
+              </button>
+              <button class="prediction-btn secondary" (click)="dismissPrediction(prediction)">
+                Dismiss
+              </button>
+            </div>
+            <div class="prediction-timeline">
+              <span class="timeline-label">Recommended action by:</span>
+              <span class="timeline-time">{{ prediction.recommendedBy }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="ai-chat">
+        <div class="chat-header">
+          <span class="chat-title">Ask AI Assistant</span>
+          <span class="chat-status">{{ aiAssistant.chatMessages.length }} messages</span>
+        </div>
+        <div class="chat-messages" #chatMessages>
+          <div *ngFor="let message of aiAssistant.chatMessages" class="chat-message" [ngClass]="message.sender">
+            <div class="message-avatar">
+              <span *ngIf="message.sender === 'ai'">🤖</span>
+              <span *ngIf="message.sender === 'user'">👤</span>
+            </div>
+            <div class="message-content">
+              <p>{{ message.content }}</p>
+              <span class="message-time">{{ message.timestamp | date:'short' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input">
+          <input type="text" 
+                 [(ngModel)]="aiChatInput" 
+                 (keyup.enter)="sendAIMessage()"
+                 placeholder="Ask about threats, system status, or recommendations..."
+                 class="chat-input-field">
+          <button class="chat-send-btn" (click)="sendAIMessage()" [disabled]="!aiChatInput.trim()">
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="soc-footer">
+    <span class="footer-updated">Last updated: {{ lastUpdated }}</span>
+    <span class="footer-version">CyberShield SOC Enterprise Suite v1.0</span>
+  </footer>
 </div>

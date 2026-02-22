@@ -38,8 +38,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "20kB",
+                  "maximumError": "32kB"
                 }
               ],
               "outputHashing": "all"
@@ -48,6 +48,11 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "github-pages": {
+              "budgets": [{"type": "initial", "maximumWarning": "500kB", "maximumError": "1MB"}],
+              "outputHashing": "all",
+              "baseHref": "/cybershield-modern/"
             }
           },
           "defaultConfiguration": "production"
