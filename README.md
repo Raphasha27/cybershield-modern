@@ -5,16 +5,15 @@
 ![CyberShield Banner](https://img.shields.io/badge/CyberShield-SOC%20Dashboard-00d4ff?style=for-the-badge&logo=security&logoColor=white)
 
 ### 🚀 **[LIVE DEMO - VERCEL](https://cybershield-soc.vercel.app)** 🚀
-### 🌐 **[LIVE DEMO - GITHUB PAGES](https://raphasha27.github.io/cybershield-modern/)** 🌐
 
-[![Vercel](https://img.shields.io/badge/🚀_Primary_Demo-Vercel-000000?style=for-the-badge)](https://cybershield-soc.vercel.app)
-[![GitHub Pages](https://img.shields.io/badge/🌐_Alternative_Demo-GitHub_Pages-181717?style=for-the-badge)](https://raphasha27.github.io/cybershield-modern/)
+[![Live Demo](https://img.shields.io/badge/🚀_LIVE_DEMO-Try_Now-00d4ff?style=for-the-badge)](https://cybershield-soc.vercel.app)
+
+[![Vercel](https://img.shields.io/badge/🚀_Live_Demo-Vercel-000000?style=for-the-badge)](https://cybershield-soc.vercel.app)
 
 [![Angular](https://img.shields.io/badge/Angular-21-dd0031?style=flat-square&logo=angular)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Chart.js](https://img.shields.io/badge/Chart.js-4.4-ff6384?style=flat-square&logo=chart.js)](https://www.chartjs.org/)
 [![Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?style=flat-square&logo=vercel)](https://vercel.com)
-[![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub_Pages-181717?style=flat-square&logo=github)](https://pages.github.com/)
 
 **A cutting-edge Security Operations Center platform with AI-powered threat intelligence, real-time monitoring, and interactive global threat visualization.**
 
@@ -56,14 +55,9 @@
 
 ## 🚀 Try It Now
 
-### **No Installation Required!**
+### **🌟 [LIVE DEMO - CLICK HERE](https://cybershield-soc.vercel.app) 🌟**
 
-Choose your preferred platform:
-
-| Platform | URL | Performance |
-|----------|-----|-------------|
-| **🚀 Vercel (Primary)** | **[cybershield-soc.vercel.app](https://cybershield-soc.vercel.app)** | Global CDN, Ultra-fast |
-| **🌐 GitHub Pages** | **[raphasha27.github.io/cybershield-modern](https://raphasha27.github.io/cybershield-modern/)** | Reliable, Always available |
+**✨ No Installation Required • Works on All Devices • Try in 30 Seconds ✨**
 
 ### **🔐 Demo Login**
 - **Email:** `admin@cybershield.com` (or any email)
@@ -96,9 +90,9 @@ Choose your preferred platform:
 
 ### 🌐 Option 1: Use Live Demo (Instant)
 
-**Just click and go:**
-- **Primary:** [https://cybershield-soc.vercel.app](https://cybershield-soc.vercel.app)
-- **Alternative:** [https://raphasha27.github.io/cybershield-modern/](https://raphasha27.github.io/cybershield-modern/)
+**🚀 [CLICK HERE TO TRY NOW](https://cybershield-soc.vercel.app) 🚀**
+
+*Experience the full CyberShield SOC platform instantly - no setup required!*
 
 ### 💻 Option 2: Run Locally
 
@@ -187,25 +181,15 @@ npm start
 
 ---
 
-## 🚀 Deployment Architecture
+## 🚀 Deployment
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   GitHub Repo   │───▶│   Vercel CDN    │───▶│  Global Users   │
-│                 │    │   (Primary)     │    │                 │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                                              ▲
-         │              ┌─────────────────┐             │
-         └─────────────▶│ GitHub Pages    │─────────────┘
-                        │ (Alternative)   │
-                        └─────────────────┘
-```
+### **🌟 Live on Vercel**
 
-### **Dual Platform Benefits:**
-- ✅ **High Availability** - Redundant hosting
-- ✅ **Global Performance** - Multiple CDNs
-- ✅ **Professional Setup** - Enterprise deployment
-- ✅ **Automatic Updates** - CI/CD pipelines
+The CyberShield SOC is deployed on **Vercel** with global CDN for optimal performance:
+
+**🔗 Live URL:** [https://cybershield-soc.vercel.app](https://cybershield-soc.vercel.app)
+
+### **Deploy Your Own Version**
 
 ---
 
@@ -413,7 +397,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ### **🚀 [TRY LIVE DEMO NOW](https://cybershield-soc.vercel.app)** 
 
-**✨ No installation • Works everywhere • Try in 30 seconds ✨**
+**✨ No installation • Works everywhere • Enterprise-grade security dashboard ✨**
 
 ---
 
@@ -421,7 +405,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 [![Powered by Vercel](https://img.shields.io/badge/Powered_by-Vercel-000000?style=flat-square&logo=vercel)](https://vercel.com)
 [![Built with Angular](https://img.shields.io/badge/Built_with-Angular-dd0031?style=flat-square&logo=angular)](https://angular.io)
-[![Deployed on GitHub Pages](https://img.shields.io/badge/Also_on-GitHub_Pages-181717?style=flat-square&logo=github)](https://pages.github.com/)
 
 [⬆ Back to Top](#-cybershield-soc---enterprise-security-operations-center)
 
