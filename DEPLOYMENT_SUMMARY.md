@@ -272,6 +272,6 @@ Consider adding:
 
 **🎊 Congratulations on your successful deployment! 🎊**
 
-[View Live Demo](https://raphasha27.github.io/cybershield-modern/) | [View Repository](https://github.com/Raphasha27/cybershield-modern)
+[View Live Demo](https://cybershield-soc.vercel.app) | [View Repository](https://github.com/Raphasha27/cybershield-modern)
 
 </div>
