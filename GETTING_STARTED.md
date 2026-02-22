@@ -1,5 +1,17 @@
 # CyberShield SOC - Getting Started Guide
 
+## 🌐 Try the Live Demo (Fastest Way)
+
+**No installation needed!** Just click the link below:
+
+### **👉 [https://cybershield-soc.vercel.app](https://cybershield-soc.vercel.app) 👈**
+
+**Login with ANY email and password** (it's a demo with mock authentication):
+- Email: `admin@cybershield.com`
+- Password: `password123`
+
+---
+
 ## 🚀 Quick Start (3 Steps)
 
 ### Step 1: Install Dependencies
