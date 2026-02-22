@@ -10,7 +10,7 @@ import { SpeakersComponent } from './components/speakers/speakers.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
@@ -19,5 +19,5 @@ export const routes: Routes = [
   { path: 'upgrade', component: UpgradeComponent, canActivate: [AuthGuard] },
   { path: 'speakers', component: SpeakersComponent, canActivate: [AuthGuard] },
   { path: 'scan/:tab', component: ScanComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: '/dashboard' },
+  { path: '**', redirectTo: '/login' },
 ];
