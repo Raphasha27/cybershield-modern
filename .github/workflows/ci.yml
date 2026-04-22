@@ -1,10 +1,10 @@
-name: Continuous Integration
+name: CI
 
 on:
   push:
-    branches: [ master, feature-soc-v3 ]
+    branches: [ master, main, feature-soc-v3 ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, main ]
 
 jobs:
   build:
@@ -17,10 +17,11 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm install --legacy-peer-deps
 
     - name: Build Angular App
-      run: npm run build
+      run: npx ng build --configuration production
+      env:
+        NODE_OPTIONS: --max_old_space_size=4096
