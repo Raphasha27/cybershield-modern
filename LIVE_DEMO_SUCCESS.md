@@ -89,7 +89,7 @@ Deployed on Vercel with global CDN performance
 🔗 Try the Live Demo: https://cybershield-soc.vercel.app
 💻 Source Code: https://github.com/Raphasha27/cybershield-modern
 
-Built by Kivoc Dynamics Technology
+Built by Kirov Dynamics
 
 #WebDevelopment #Cybersecurity #Angular #TypeScript #AI #SOC #SecurityOperations
 ```
@@ -117,7 +117,7 @@ Built with @angular #TypeScript #Cybersecurity #AI
 
 ```
 CyberShield SOC - Enterprise Security Operations Center
-Lead Developer | Kivoc Dynamics Technology
+Lead Developer | Kirov Dynamics
 
 • Developed enterprise-grade cybersecurity dashboard with AI-powered threat intelligence
 • Implemented interactive global threat map with real-time data visualization using Chart.js
@@ -169,7 +169,7 @@ Live Demo: https://cybershield-soc.vercel.app
 | **🚀 Live Demo** | https://cybershield-soc.vercel.app |
 | **💻 Source Code** | https://github.com/Raphasha27/cybershield-modern |
 | **📚 Documentation** | [README.md](README.md) |
-| **🏢 Company** | [Kivoc Dynamics Technology](https://github.com/KivocDynamics) |
+| **🏢 Company** | [Kirov Dynamics](https://github.com/KirovDynamics) |
 
 ---
 
@@ -189,4 +189,4 @@ You've successfully created and deployed a professional, enterprise-grade cybers
 
 ---
 
-**Built with ❤️ by Kivoc Dynamics Technology**
+**Built with ❤️ by Kirov Dynamics**

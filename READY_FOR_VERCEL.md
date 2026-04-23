@@ -72,7 +72,7 @@ https://your-project-name.vercel.app
 ✅ **vercel-build** script - Build command for Vercel
 ✅ **Production build** - Optimized Angular build
 ✅ **Automatic deployments** - On every push to master
-✅ **Professional README** - With Kivoc Dynamics credits
+✅ **Professional README** - With Kirov Dynamics credits
 ✅ **Complete documentation** - All guides updated
 
 ---
@@ -114,7 +114,7 @@ Built with Angular 21, TypeScript, and deployed on Vercel.
 🔗 Live Demo: https://cybershield-soc.vercel.app
 💻 GitHub: https://github.com/Raphasha27/cybershield-modern
 
-Built by Kivoc Dynamics Technology
+Built by Kirov Dynamics
 
 #WebDevelopment #Cybersecurity #Angular #TypeScript #FullStack
 ```
@@ -132,7 +132,7 @@ Try it: https://cybershield-soc.vercel.app
 
 Built with @angular #TypeScript #Cybersecurity
 
-By @KivocDynamics
+By @KirovDynamics
 ```
 
 ---
@@ -182,7 +182,7 @@ Code: https://github.com/Raphasha27/cybershield-modern
    - Professional domain
 
 4. **Proper Credits**
-   - Kivoc Dynamics Technology attribution
+   - Kirov Dynamics attribution
    - Professional contributors file
    - Clear ownership
 
@@ -198,7 +198,7 @@ Everything is ready for Vercel deployment. Just follow the 5 steps above and you
 
 <div align="center">
 
-**Built with ❤️ by Kivoc Dynamics Technology**
+**Built with ❤️ by Kirov Dynamics**
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Raphasha27/cybershield-modern)
 

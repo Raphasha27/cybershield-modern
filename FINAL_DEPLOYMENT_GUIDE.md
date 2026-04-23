@@ -82,7 +82,7 @@ git push origin master
 ## 🎯 What You've Accomplished
 
 ✅ **Professional README** - Employer-friendly with prominent live demo link
-✅ **Kivoc Dynamics Credits** - Proper attribution to the company
+✅ **Kirov Dynamics Credits** - Proper attribution to the company
 ✅ **Vercel Configuration** - Ready for one-click deployment
 ✅ **GitHub Pages Backup** - Alternative deployment option
 ✅ **Contributors File** - Professional credits and contribution guidelines
@@ -160,7 +160,7 @@ A cutting-edge Security Operations Center platform with:
 
 **Tech Stack:** Angular 21, TypeScript, Chart.js, Node.js, MongoDB
 
-**Built by:** Kivoc Dynamics Technology
+**Built by:** Kirov Dynamics
 ```
 
 ---
@@ -199,7 +199,7 @@ Built with Angular 21, TypeScript, and Node.js.
 🔗 Live Demo: https://your-project.vercel.app
 💻 Source Code: https://github.com/Raphasha27/cybershield-modern
 
-Built by Kivoc Dynamics Technology
+Built by Kirov Dynamics
 
 #WebDevelopment #Cybersecurity #Angular #TypeScript #FullStack
 ```
@@ -240,7 +240,7 @@ Built with @angular #TypeScript #Cybersecurity
 - Check [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md)
 - Review Vercel documentation
 - Open an issue on GitHub
-- Contact: raphael@kivoc-dynamics.com
+- Contact: raphael@kirov-dynamics.com
 
 ---
 
@@ -270,6 +270,6 @@ You now have a professional, employer-ready cybersecurity dashboard that showcas
 
 [Deploy to Vercel Now](https://vercel.com/new/clone?repository-url=https://github.com/Raphasha27/cybershield-modern)
 
-**Built with ❤️ by Kivoc Dynamics Technology**
+**Built with ❤️ by Kirov Dynamics**
 
 </div>

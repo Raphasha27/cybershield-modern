@@ -91,7 +91,7 @@ Deployed with automated CI/CD pipelines
 🔗 Alt Demo: https://raphasha27.github.io/cybershield-modern/
 💻 Source: https://github.com/Raphasha27/cybershield-modern
 
-Built by Kivoc Dynamics Technology
+Built by Kirov Dynamics
 
 #WebDevelopment #Cybersecurity #Angular #DevOps #FullStack #AI
 ```
@@ -117,7 +117,7 @@ Built with @angular #TypeScript #Cybersecurity #DevOps
 ### Resume Section:
 ```
 CyberShield SOC - Enterprise Security Operations Center
-Full-Stack Developer | Kivoc Dynamics Technology
+Full-Stack Developer | Kirov Dynamics Technology
 
 • Developed enterprise-grade cybersecurity dashboard with AI-powered threat intelligence
 • Implemented dual-platform deployment (Vercel + GitHub Pages) with automated CI/CD

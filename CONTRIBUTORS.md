@@ -2,14 +2,14 @@
 
 ## 🏢 Built By
 
-### Kivoc Dynamics Technology
+### Kirov Dynamics
 **Leading Technology Solutions Provider**
 
-- **GitHub**: [@KivocDynamics](https://github.com/KivocDynamics)
-- **Website**: [kivoc-dynamics.com](https://kivoc-dynamics.com)
+- **GitHub**: [@KirovDynamics](https://github.com/KirovDynamics)
+- **Website**: [kirov-dynamics.com](https://kirov-dynamics.com)
 - **Role**: Primary Development & Architecture
 
-Kivoc Dynamics Technology specializes in cutting-edge cybersecurity solutions, enterprise software development, and AI-powered security platforms.
+Kirov Dynamics specializes in cutting-edge cybersecurity solutions, enterprise software development, and AI-powered security platforms.
 
 ---
 
@@ -73,12 +73,12 @@ Special thanks to all contributors who have helped make CyberShield SOC better:
 
 For business inquiries or partnership opportunities:
 
-**Kivoc Dynamics Technology**
-- Email: contact@kivoc-dynamics.com
-- GitHub: [@KivocDynamics](https://github.com/KivocDynamics)
+**Kirov Dynamics**
+- Email: contact@kirov-dynamics.com
+- GitHub: [@KirovDynamics](https://github.com/KirovDynamics)
 
 **Project Maintainer**
-- Email: raphael@kivoc-dynamics.com
+- Email: raphael@kirov-dynamics.com
 - GitHub: [@Raphasha27](https://github.com/Raphasha27)
 
 ---
@@ -91,8 +91,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Made with ❤️ by Kivoc Dynamics Technology**
+**Made with ❤️ by Kirov Dynamics**
 
-[![Kivoc Dynamics](https://img.shields.io/badge/Built_by-Kivoc_Dynamics-00d4ff?style=for-the-badge)](https://github.com/KivocDynamics)
+[![Kirov Dynamics](https://img.shields.io/badge/Built_by-Kirov_Dynamics-00d4ff?style=for-the-badge)](https://github.com/KirovDynamics)
 
 </div>

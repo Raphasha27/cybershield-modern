@@ -47,7 +47,7 @@ Built with Angular 21, TypeScript, Chart.js, and deployed on Vercel.
 🔗 Live Demo: https://cybershield-soc.vercel.app
 💻 GitHub: https://github.com/Raphasha27/cybershield-modern
 
-Developed by Kivoc Dynamics Technology
+Developed by Kirov Dynamics
 
 #WebDevelopment #Cybersecurity #Angular #TypeScript #FullStack #AI #SecurityOperations
 ```
@@ -66,7 +66,7 @@ Try it live: https://cybershield-soc.vercel.app
 
 Built with @angular #TypeScript #Cybersecurity
 
-By Kivoc Dynamics Technology 🚀
+By Kirov Dynamics 🚀
 ```
 
 ### Portfolio Description
@@ -97,7 +97,7 @@ Source Code: https://github.com/Raphasha27/cybershield-modern
 
 ```
 CyberShield SOC - Enterprise Security Operations Center
-Full-Stack Developer | Kivoc Dynamics Technology
+Full-Stack Developer | Kirov Dynamics
 
 • Developed enterprise-grade cybersecurity dashboard with AI-powered threat intelligence
 • Implemented interactive global threat map with real-time data visualization using Chart.js
@@ -211,7 +211,7 @@ GitHub: https://github.com/Raphasha27/cybershield-modern
    - Clean, maintainable code
 
 4. **Proper Attribution**
-   - Kivoc Dynamics Technology credits
+   - Kirov Dynamics credits
    - Professional contributors file
    - Clear ownership and licensing
 
@@ -257,7 +257,7 @@ You've successfully deployed a professional, enterprise-grade cybersecurity dash
 
 ## 🚀 **[VIEW YOUR LIVE DEMO](https://cybershield-soc.vercel.app)** 🚀
 
-**Built with ❤️ by Kivoc Dynamics Technology**
+**Built with ❤️ by Kirov Dynamics**
 
 [![Powered by Vercel](https://img.shields.io/badge/Powered_by-Vercel-000000?style=for-the-badge&logo=vercel)](https://vercel.com)
 [![Built with Angular](https://img.shields.io/badge/Built_with-Angular-dd0031?style=for-the-badge&logo=angular)](https://angular.io)
