@@ -1,12 +1,11 @@
 # CyberShield Modern - Total Cyber Defense SOC Platform
-🛡️ **Premium, Mission-Critical Security Operations Center**
+🛡️ **Premium, Mission-Critical Security Operations Center by Kirov Dynamics**
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![Platform](https://img.shields.io/badge/platform-Angular-red.svg)]()
-[![AI](https://img.shields.io/badge/AI-CyberSentinel-blue.svg)]()
-[![ML](https://img.shields.io/badge/ML-Neural_Engine_v4.2-cyan.svg)]()
+[![Organization](https://img.shields.io/badge/Organization-Kirov_Dynamics-blue.svg)](https://github.com/Raphasha27)
 
-**CyberShield Modern** is an ultra-premium, high-performance Security Operations Center (SOC) dashboard. It delivers a mission-critical "Total Cyber Defense" experience, combining real-time heuristic monitoring, ML-driven threat detection, and advanced deep-web identity integrity scanning into a stunning glassmorphism interface.
+**CyberShield Modern** is an ultra-premium, high-performance Security Operations Center (SOC) dashboard developed by **Kirov Dynamics**. It delivers a mission-critical "Total Cyber Defense" experience, combining real-time heuristic monitoring, AI-driven threat detection, and advanced identity integrity scanning into a stunning glassmorphism interface.
 
 ## 🕹️ Live Preview
 
@@ -19,13 +18,13 @@ View the live platform: [CyberShield SOC - Total Defense](https://raphasha27.git
 
 ## ✨ Key Features & Neural Insights
 
--   **🤖 CyberSentinel AI v3.5**: Your intelligent threat response partner for real-time analysis and rapid remediation.
+-   **🤖 Kirov CyberSentinel AI v3.5**: Intelligent threat response partner for real-time analysis and rapid remediation.
 -   **🧠 Neural Engine v4.2**: Advanced Machine Learning model for behavioral monitoring with ultra-high confidence metrics.
 -   **🔍 Identity Integrity Scan**: ML-powered deep-web audit for sensitive personal data (Email, ID, Phone) to detect breaches.
 -   **📈 Heuristic Threat Level**: A dynamic mission-critical gauge that responds to real-time network entropy.
 -   **📟 Premium SIEM Terminal**: Integrated terminal simulating live system logs with high-fidelity color coding.
 -   **📋 Incident Orchestration**: Full-lifecycle Kanban board for security incident tracking and mitigation.
--   **💎 Total Cyber Defense Design**: A premium, futuristic dark-mode UI featuring advanced glassmorphism and motion graphics.
+-   **💎 Kirov Sovereign Design**: A premium, futuristic dark-mode UI featuring advanced glassmorphism and motion graphics.
 
 ## 📸 Comprehensive Screenshots
 
@@ -56,12 +55,12 @@ View the live platform: [CyberShield SOC - Total Defense](https://raphasha27.git
 ### Steps to Run
 1.  **Clone the Repository**:
     ```bash
-    git clone https://github.com/Raphasha27/cybershield-modern.git
-    cd cybershield-modern
+    git clone https://github.com/Raphasha27/cybershield_soc.git
+    cd cybershield_soc
     ```
 2.  **Install Dependencies**:
     ```bash
-    npm install
+    npm install --legacy-peer-deps
     ```
 3.  **Start the Development Server**:
     ```bash
@@ -77,10 +76,10 @@ The application includes a built-in simulation engine (`SecurityService`) that g
 -   Interactive Chart.js updates upon view switching.
 
 ## 📝 Modernization Details
-This version represents a significant architectural upgrade from the original vanilla JS implementation:
+This version represents a significant architectural upgrade by **Kirov Dynamics**:
 -   **Encapsulation**: Logical components are managed via standalone Angular components.
--   **Reactivity**: Signals ensure the UI stays in perfect sync with the security data without expensive change detection cycles.
+-   **Reactivity**: Signals ensure the UI stays in perfect sync with the security data.
 -   **Enterprise Ready**: Integrated features for personal data checkups and machine learning status monitoring.
 
 ---
-Developed with ❤️ for the Cybersecurity Community. Visit [Raphasha27 Profile](https://github.com/Raphasha27)
+Developed by **Kirov Dynamics**. Visit [Raphasha27 Profile](https://github.com/Raphasha27)
