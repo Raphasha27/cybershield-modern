@@ -12,26 +12,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+      - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
+      - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 20
         cache: 'npm'
 
-    - name: Install dependencies
+      - name: Install dependencies
       run: npm ci
 
-    - name: Build application
+      - name: Build application
       run: npm run
     build:github-pages
 
-    - name: Setup Pages
+      - name: Setup Pages
       uses: actions/configure-pages@v4
 
-    - name: Upload artifact
+      - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
         path: ./dist/cybershield-soc/browser
@@ -44,7 +44,7 @@ jobs:
     needs: build
 
     steps:
-    - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
 

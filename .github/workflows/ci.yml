@@ -12,17 +12,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Use Node.js
+      - name: Use Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 20
 
-    - name: Install dependencies
+      - name: Install dependencies
       run: npm install --legacy-peer-deps
 
-    - name: Build Angular App
+      - name: Build Angular App
       run: npx ng build --configuration production
       env:
         NODE_OPTIONS: --max_old_space_size=4096
