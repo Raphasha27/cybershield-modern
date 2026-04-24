@@ -1,10 +1,11 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ master, main, feature-soc-v3 ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, main ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -25,3 +26,17 @@ jobs:
       run: npx ng build --configuration production
       env:
         NODE_OPTIONS: --max_old_space_size=4096
+
+  security_scan:
+    name: Security Scan (Trivy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
