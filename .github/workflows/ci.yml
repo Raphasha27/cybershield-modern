@@ -1,34 +1,36 @@
-﻿name: CI
+name: Node.js CI (Kirov Dynamics)
 
 on:
-  push:
-    branches: ["main", "master"]
-  pull_request:
-    branches: ["main", "master"]
   workflow_dispatch:
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
-
-permissions:
-  contents: read
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-      - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then npm ci; else npm install; fi
-      - name: Lint
-        run: npm run lint --if-present || echo "No lint script"
-      - name: Build
-        run: npm run build --if-present || echo "No build script"
-      - name: Test
-        run: npm test --if-present -- --watchAll=false 2>/dev/null || echo "No test script"
+          cache: 'npm'
+      - run: npm install --legacy-peer-deps
+      - run: npm run build --if-present
+      - run: npm test --if-present
+
+  security_scan:
+    name: Security Scan (Trivy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
