@@ -12,7 +12,24 @@
 ## 🕹️ Live Preview
 
 ### 🖥️ Mission Control Terminal
-View the live platform: [CyberShield SOC - Total Defense](https://raphasha27.github.io/cybershield-modern/)
+View the live platform: [CyberShield SOC - Total Defense](https://portfolio-react-zeta-black-48.vercel.app/)
+
+---
+
+
+## 🧠 Skills & Project Intelligence
+
+To reflect the latest capabilities showcased on your GitHub profile and repository READMEs, this project now highlights:
+
+- **SOC Automation & Incident Intelligence** with real-time triage workflows.
+- **AI-Augmented Security Operations** for faster analyst decision support.
+- **Modern Frontend Engineering** (Angular + advanced UI patterns + performance-aware design).
+- **Cross-Project Security Architecture Thinking** informed by your broader repository ecosystem (including Health Hub and related security-focused builds).
+
+Explore your GitHub profile and repositories for the complete skill evolution:
+- Profile: https://github.com/Raphasha27
+- Repositories: https://github.com/Raphasha27?tab=repositories
+- CyberShield SOC README: https://github.com/Raphasha27/cybershield_soc#readme
 
 ---
 
