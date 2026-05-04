@@ -12,7 +12,20 @@
 ## 🕹️ Live Preview
 
 ### 🖥️ Mission Control Terminal
-View the live platform: [CyberShield SOC - Total Defense](https://raphasha27.github.io/cybershield-modern/)
+View the live platform: [CyberShield SOC - Total Defense](https://portfolio-react-zeta-black-48.vercel.app/)
+
+> If you maintain the live site from **repo-Portfolio**, keep that repository URL synchronized below to avoid README 404s.
+
+---
+
+
+## 🧠 Skills & Project Intelligence
+
+Core profile and repository links:
+- Profile: https://github.com/Raphasha27
+- Repositories: https://github.com/Raphasha27?tab=repositories
+- Portfolio repository: https://github.com/Raphasha27/repo-Portfolio
+- CyberShield SOC repository: https://github.com/Raphasha27/cybershield_soc
 
 ---
 

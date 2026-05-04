@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>CyberShield SOC</title>
-  <base href="/cybershield-modern/">
+  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script>
-    // GitHub Pages SPA redirect
+    // SPA redirect helper (works for static hosts like Vercel/GitHub Pages)
     // This script takes the current url and converts the path and query
     // string into just a query string, and then redirects the browser
     // to the new url with only a query string and hash fragment
@@ -28,9 +28,9 @@
     <h1>🛡️ CyberShield SOC</h1>
     <p>Redirecting to dashboard...</p>
     <script>
-      // Redirect to the main page with hash routing
+      // Redirect to app entry using hash routing
       setTimeout(function() {
-        window.location.href = '/cybershield-modern/#/login';
+        window.location.href = '/#/login';
       }, 1000);
     </script>
   </div>
