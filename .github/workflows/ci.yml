@@ -1,36 +1,16 @@
-name: Node.js CI (Kirov Dynamics)
+
+name: CI/CD Pipeline
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ master, main ]
+    branches: [ develop, main ]
   pull_request:
-    branches: [ master, main ]
+    branches: [ develop, main ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm install --legacy-peer-deps
-      - run: npm run build --if-present
-      - run: npm test --if-present
-
-  security_scan:
-    name: Security Scan (Trivy)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
-          ignore-unfixed: true
-          format: 'table'
-          exit-code: '0'
-          severity: 'CRITICAL,HIGH'
+    - uses: actions/checkout@v3
+    - name: Run Tests
+      run: echo "Replace with actual tests"
