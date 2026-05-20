@@ -1,99 +1,31 @@
-# 🏛️ KIROV DYNAMICS | CYBERSHIELD SOC
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,100:00ffcc&height=200&section=header&text=cybershield_soc&fontSize=50&fontColor=ffffff&fontAlignY=40&desc=Upgraded%20Startup%20Project&descAlignY=65" width="100%"/>
 
-🛡️ **Total Defense Security Operations Center**
+  [![Status](https://img.shields.io/badge/Status-Offline%20for%20Upgrades-ff4b4b?style=for-the-badge)](#)
+  [![Infrastructure](https://img.shields.io/badge/Infra-Migrating-8957e5?style=for-the-badge)](#)
+</div>
 
-[![Status](https://img.shields.io/badge/Status-🚀_Active-3fb950?style=for-the-badge&labelColor=0d1117)](https://github.com/Raphasha27)
-[![Health Hub](https://img.shields.io/badge/Health_Hub-Hardened-blue?style=for-the-badge&labelColor=0d1117)](https://github.com/Raphasha27/Health-Hub)
+## ?? Overview
+Welcome to the upgraded repository for **cybershield_soc**. 
 
-> **"Mission-Critical Infrastructure Protection."**
+> **Note on Deployment:** The previous live deployment for this project was temporarily suspended during infrastructure migration. We have disabled the external live links to prevent 404 errors. This repository remains fully functional locally.
 
----
+## ?? Key Architectural Features
+- **High-Performance Core:** Built for scalability and autonomous operations.
+- **Modern UI/UX:** Features advanced dashboard logic and secure routing.
+- **Sovereign Infrastructure Ready:** Currently being refactored for the Kirov Dynamics cloud ecosystem.
 
-## 🕹️ Live Preview
+## ??? Local Development Setup
+To run this project locally without relying on external cloud providers:
 
-### 🖥️ Mission Control Terminal
-View the live platform: [CyberShield SOC - Total Defense](https://portfolio-react-zeta-black-48.vercel.app/)
-
-> If you maintain the live site from **repo-Portfolio**, keep that repository URL synchronized below to avoid README 404s.
-
----
-
-
-## 🧠 Skills & Project Intelligence
-
-Core profile and repository links:
-- Profile: https://github.com/Raphasha27
-- Repositories: https://github.com/Raphasha27?tab=repositories
-- Portfolio repository: https://github.com/Raphasha27/repo-Portfolio
-- CyberShield SOC repository: https://github.com/Raphasha27/cybershield_soc
-
----
-
-## 🏗️ Architecture & Flow
-
-The CyberShield SOC follows a centralized heuristic monitoring architecture.
-
-```mermaid
-graph TD
-    subgraph "Heuristic Layer"
-        Traffic[Network Traffic] -->|Scan| IDS[Kirov Intrusion Detection]
-        Identity[User ID / Metadata] -->|Audit| Breach[Breach Analysis]
-    end
-
-    subgraph "Neural Core"
-        IDS --> Engine[Neural Engine v4.2]
-        Breach --> Engine
-        Engine -->|Heuristics| Level[Threat Level Gauge]
-    end
-
-    subgraph "Response Layer"
-        Level --> Sentinel[Kirov CyberSentinel AI]
-        Sentinel -->|Remediate| Action[Autonomous Mitigation]
-        Sentinel -->|Log| Terminal[SIEM Terminal]
-    end
-
-    Terminal --> Dashboard[Glassmorphic Executive UI]
-```
-
----
-
-## ✨ Features
-
-- **🤖 Kirov CyberSentinel AI**: Intelligent threat response partner for real-time analysis and rapid remediation.
-- **🔍 Identity Integrity Scan**: Deep-web audit for sensitive personal data to detect and flag breaches.
-- **📈 Heuristic Threat Level**: Dynamic gauge responding to network entropy and behavioral anomalies.
-- **📟 Premium SIEM Terminal**: High-fidelity terminal simulating live logs with advanced color coding.
-- **💎 Kirov Sovereign Design**: Futuristic dark-mode UI with glassmorphism and sub-pixel motion graphics.
-
----
-
-## 🛠️ Technology Stack
-
-| Component | Technology |
-| :--- | :--- |
-| **Framework** | Angular (Latest) with Signals |
-| **Visualization** | Chart.js & D3.js |
-| **Security** | Heuristic Pattern Recognition Engine |
-| **Styling** | Modular CSS3 with Neon Tokens |
-| **Hardening** | Health Hub Status Injection |
-
----
-
-## 🚀 Installation
-
-```bash
-# Clone the repository
+`ash
 git clone https://github.com/Raphasha27/cybershield_soc.git
+cd cybershield_soc
+# Install dependencies according to package manager (npm/pip/cargo)
+# Start the local development server
+`
 
-# Install & Run
-npm install
-npm start
-```
-
----
-
-## 📜 License
-© 2026 **Kirov Dynamics**. All Rights Reserved.
-
----
-*Architected and Engineered by Raphasha27 - Kirov Dynamics 2026.*
+## ?? Roadmap
+- [x] Clear dead Vercel/Heroku links to prevent 404 routing errors.
+- [ ] Migrate CI/CD to local GitHub Actions.
+- [ ] Deploy isolated -lab environment.
