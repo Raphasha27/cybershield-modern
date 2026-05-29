@@ -1,7 +1,37 @@
 ﻿version: 2
 updates:
+<<<<<<< HEAD
+=======
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "security"
+      - "dependencies"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "security"
+      - "dependencies"
+
+>>>>>>> 6b59663d1270b8a3b058be7e55ff0ea4a7289fca
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+<<<<<<< HEAD
     open-pull-requests-limit: 3
+=======
+    labels:
+      - "security"
+      - "dependencies"
+>>>>>>> 6b59663d1270b8a3b058be7e55ff0ea4a7289fca
