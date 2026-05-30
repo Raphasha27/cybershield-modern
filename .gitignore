@@ -1,17 +1,51 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# Compiled output
+# ──────────────────────────────────────────────
+# Dependencies
+# ──────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ──────────────────────────────────────────────
+# Build outputs
+# ──────────────────────────────────────────────
+dist/
 /dist
-/tmp
+build/
+.next/
+out/
 /out-tsc
 /bazel-out
+.nuxt/
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# ──────────────────────────────────────────────
+# Angular-specific
+# ──────────────────────────────────────────────
+/.angular/
+/.angular/cache
+.sass-cache/
+/connect.lock
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+/tmp
 
-# IDEs and editors
+# ──────────────────────────────────────────────
+# Environment variables
+# ──────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+
+# ──────────────────────────────────────────────
+# IDE files
+# ──────────────────────────────────────────────
+.vscode/settings.json
 .idea/
 .project
 .classpath
@@ -19,26 +53,60 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.history/*
 
-# Visual Studio Code
+# ──────────────────────────────────────────────
+# Visual Studio Code (keep shared config, ignore personal)
+# ──────────────────────────────────────────────
 .vscode/*
-!.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-__screenshots__/
-
-# System files
+# ──────────────────────────────────────────────
+# OS files
+# ──────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# ──────────────────────────────────────────────
+# Logs
+# ──────────────────────────────────────────────
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# ──────────────────────────────────────────────
+# Runtime
+# ──────────────────────────────────────────────
+*.pid
+*.seed
+*.pid.lock
+
+# ──────────────────────────────────────────────
+# Coverage
+# ──────────────────────────────────────────────
+coverage/
+/coverage
+*.lcov
+.nyc_output
+
+# ──────────────────────────────────────────────
+# Cache
+# ──────────────────────────────────────────────
+.cache/
+.parcel-cache/
+.vite/
+
+# ──────────────────────────────────────────────
+# Vercel
+# ──────────────────────────────────────────────
 .vercel
