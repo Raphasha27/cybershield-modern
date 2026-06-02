@@ -15,7 +15,7 @@
     "baseUrl": "./",
     "target": "ES2022",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "useDefineForClassFields": true,
     "lib": [
       "ES2022",
