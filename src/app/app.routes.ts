@@ -7,6 +7,9 @@ import { IncidentsComponent } from './components/incidents/incidents.component';
 import { UpgradeComponent } from './components/upgrade/upgrade.component';
 import { ScanComponent } from './components/scan/scan.component';
 import { SpeakersComponent } from './components/speakers/speakers.component';
+import { IncidentCreateComponent } from './components/incident-create/incident-create';
+import { ThreatsComponent } from './components/threats/threats';
+import { AuditLogsComponent } from './components/audit-logs/audit-logs';
 import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -16,6 +19,9 @@ export const routes: Routes = [
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'incidents', component: IncidentsComponent, canActivate: [AuthGuard] },
+  { path: 'incidents/create', component: IncidentCreateComponent, canActivate: [AuthGuard] },
+  { path: 'threats', component: ThreatsComponent, canActivate: [AuthGuard] },
+  { path: 'audit-logs', component: AuditLogsComponent, canActivate: [AuthGuard] },
   { path: 'upgrade', component: UpgradeComponent, canActivate: [AuthGuard] },
   { path: 'speakers', component: SpeakersComponent, canActivate: [AuthGuard] },
   { path: 'scan/:tab', component: ScanComponent, canActivate: [AuthGuard] },

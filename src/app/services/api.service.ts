@@ -82,4 +82,22 @@ export class ApiService {
   getDashboardMetrics(): Observable<any> {
     return this.http.get(`${this.apiUrl}/dashboard/metrics`, { headers: this.getHeaders() });
   }
+
+  // Users (Admin)
+  getUsers(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/users`, { headers: this.getHeaders() });
+  }
+
+  createUser(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/users`, data, { headers: this.getHeaders() });
+  }
+
+  deleteUser(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/users/${id}`, { headers: this.getHeaders() });
+  }
+
+  // Audit Logs (Admin)
+  getAuditLogs(page = 1, limit = 50): Observable<any> {
+    return this.http.get(`${this.apiUrl}/audit-logs?page=${page}&limit=${limit}`, { headers: this.getHeaders() });
+  }
 }

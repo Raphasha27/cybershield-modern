@@ -10,6 +10,9 @@ import { RouterLink } from '@angular/router';
     <div class="page-wrap">
       <h1>All Incidents</h1>
       <p>View and manage all security incidents.</p>
+      <div class="actions">
+        <a routerLink="/incidents/create" class="btn-primary">Report Incident</a>
+      </div>
       <a routerLink="/dashboard" class="back-link">← Back to Dashboard</a>
     </div>
   `,

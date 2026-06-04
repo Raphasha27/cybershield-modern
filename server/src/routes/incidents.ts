@@ -1,12 +1,17 @@
 import { Router, Request, Response } from 'express';
 import { authMiddleware, requireRole } from '../middleware/auth';
 import { incidentService } from '../services/IncidentService';
+import { io } from '../index';
 
 const router = Router();
 
 router.post('/', authMiddleware, requireRole(['Admin', 'Analyst']), async (req: Request, res: Response) => {
   try {
     const incident = await incidentService.createIncident(req.body, req.user!.userId);
+    
+    // Emit real-time notification
+    io.emit('new-incident', incident);
+    
     res.status(201).json(incident);
   } catch (error: any) {
     res.status(400).json({ error: { code: 'BAD_REQUEST', message: error.message } });
