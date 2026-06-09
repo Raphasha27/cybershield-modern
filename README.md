@@ -17,41 +17,23 @@ Mission-critical Security Operations Center dashboard with heuristic threat dete
 
 ## Tech Stack
 | Layer | Technology |
-|-------|------------|
-| Frontend | Angular 19, TypeScript, SCSS |
-| Backend | Node.js, Express |
-| Database | PostgreSQL |
-| Cache | Redis |
-| Container | Docker, Docker Compose |
-| Proxy | Nginx |
+|-------|---------
+---
 
-## Quick Start
-```bash
-# Development
-npm install
-npx ng serve
+## Product Ladder
 
-# Production with Docker
-docker compose up -d
+```
+GitHub (this repo)
+    ↓
+Portfolio → https://raphasha27.github.io/raphasha-dev-portfolio
+    ↓
+Case Study → (coming soon)
+    ↓
+Live Demo → (check the badges above)
+    ↓
+Contact → https://github.com/Raphasha27
 ```
 
-## Security Features
-- Input sanitization and validation
-- CORS policies configured
-- Rate limiting on API endpoints
-- Session management with JWT
-- Automated dependency scanning via Dependabot
+Part of the [Kirov Dynamics Technology](https://github.com/Raphasha27) ecosystem.
 
-## Architecture
-```
-┌─────────────┐     ┌──────────────┐     ┌──────────┐
-│  Angular UI │────▶│  Express API │────▶│PostgreSQL│
-│  (Frontend) │     │  (Backend)   │     │ (State)  │
-└─────────────┘     └──────────────┘     └──────────┘
-       │                    │
-       ▼                    ▼
-┌─────────────┐     ┌──────────────┐
-│   Nginx     │     │    Redis     │
-│  (CDN/SSL)  │     │   (Cache)    │
-└─────────────┘     └──────────────┘
-```
+**Built by Koketso Raphasha — Practical AI for Africa**
