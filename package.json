@@ -28,8 +28,8 @@
   "packageManager": "npm@11.6.1",
   "dependencies": {
     "@angular/common": "^21.0.6",
-    "@angular/compiler": "^21.0.0",
-    "@angular/core": "^21.0.6",
+    "@angular/compiler": "^21.0.7",
+    "@angular/core": "^21.0.8",
     "@angular/forms": "^21.0.0",
     "@angular/platform-browser": "^21.0.6",
     "@angular/platform-browser-dynamic": "^21.0.6",
