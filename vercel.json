@@ -1,5 +1,9 @@
 {
     "version": 2,
+    "buildCommand": "npm run vercel-build",
+    "outputDirectory": "dist/cybershield-modern/browser",
+    "installCommand": "npm install --legacy-peer-deps",
+    "framework": null,
     "rewrites": [
         {
             "source": "/(.*)",
