@@ -82,4 +82,14 @@ export class ApiService {
   getDashboardMetrics(): Observable<any> {
     return this.http.get(`${this.apiUrl}/dashboard/metrics`, { headers: this.getHeaders() });
   }
+
+  // AI Security Features
+  analyzeLogs(logs: string[], source = 'AI Log Analyzer'): Observable<any> {
+    return this.http.post(`${this.apiUrl}/threats/analyze-logs`, { logs, source }, { headers: this.getHeaders() });
+  }
+
+  queryCopilot(question: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/threats/copilot`, { question }, { headers: this.getHeaders() });
+  }
 }
+
