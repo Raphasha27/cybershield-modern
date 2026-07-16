@@ -18,7 +18,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx ng lint
-        continue-on-error: true
 
   build:
     name: Angular Build

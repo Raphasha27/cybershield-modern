@@ -12,7 +12,6 @@ jobs:
   trivy:
     name: Trivy Security Scan
     runs-on: ubuntu-latest
-    continue-on-error: true
     permissions:
       security-events: write
       contents: read
