@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿name: CodeQL
 
 on:
@@ -20,7 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-=======
 ﻿name: "CodeQL Security Analysis"
 
 on:
@@ -47,18 +45,14 @@ jobs:
 
     steps:
       - name: Checkout repository
->>>>>>> 6b59663d1270b8a3b058be7e55ff0ea4a7289fca
         uses: actions/checkout@v4
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-<<<<<<< HEAD
           languages: javascript-typescript
-=======
           languages: ${{ matrix.language }}
           queries: security-and-quality
->>>>>>> 6b59663d1270b8a3b058be7e55ff0ea4a7289fca
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
@@ -66,8 +60,5 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
-<<<<<<< HEAD
           category: "/language:javascript-typescript"
-=======
           category: "/language:${{ matrix.language }}"
->>>>>>> 6b59663d1270b8a3b058be7e55ff0ea4a7289fca
