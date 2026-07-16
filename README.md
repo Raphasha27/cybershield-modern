@@ -6,7 +6,7 @@
 [![Angular](https://img.shields.io/badge/Angular-19-red)](https://angular.io)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Mission-critical Security Operations Center dashboard with heuristic threat detection and glassmorphic UI. Built for Kirov Dynamics Threat Detection & Response platform.
+Security Operations Center dashboard with threat detection dashboard and glassmorphic UI. Built for Kirov Dynamics Threat Detection & Response platform.
 
 ## Features
 - **Real-time Threat Detection** - Heuristic analysis engine
@@ -20,7 +20,7 @@ Mission-critical Security Operations Center dashboard with heuristic threat dete
 |-------|------------|
 | Frontend | Angular 19, TypeScript, SCSS |
 | Backend | Node.js, Express |
-| Database | PostgreSQL |
+| Database | MongoDB |
 | Cache | Redis |
 | Container | Docker, Docker Compose |
 | Proxy | Nginx |
@@ -45,7 +45,7 @@ docker compose up -d
 ## Architecture
 ```
 ┌─────────────┐     ┌──────────────┐     ┌──────────┐
-│  Angular UI │────▶│  Express API │────▶│PostgreSQL│
+│  Angular UI │────▶│  Express API │────▶│MongoDB│
 │  (Frontend) │     │  (Backend)   │     │ (State)  │
 └─────────────┘     └──────────────┘     └──────────┘
        │                    │
@@ -71,3 +71,4 @@ docker compose up -d
     <img src="https://img.shields.io/badge/▶_Play_AI_Snake-0EA5E9?style=for-the-badge&logo=javascript&logoColor=white" />
   </a>
 </p>
+
