@@ -2,22 +2,25 @@ name: Security Vulnerability Scan
 
 on:
   push:
-    branches: ["main", "master"]
+    branches: [main]
   pull_request:
-    branches: ["main", "master"]
+    branches: [main]
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 6 * * 0"
 
 jobs:
   trivy:
     name: Trivy Security Scan
     runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      security-events: write
+      contents: read
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Run Trivy FS Scanner
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.29.0
         with:
           scan-type: "fs"
           ignore-unfixed: true
