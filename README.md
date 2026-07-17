@@ -1,5 +1,7 @@
 # 🔐 CyberShield SOC Dashboard
 
+[![CI](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml/badge.svg)](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml)
+
 <div align="center">
 
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
