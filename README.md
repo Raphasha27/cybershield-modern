@@ -1,74 +1,114 @@
-# CyberShield SOC - Security Operations Center
+# 🔐 CyberShield SOC Dashboard
 
-[![CI](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml/badge.svg)](https://github.com/Raphasha27/cybershield_soc/actions)
-[![CodeQL](https://github.com/Raphasha27/cybershield_soc/actions/workflows/security-scan.yml/badge.svg)](https://github.com/Raphasha27/cybershield_soc/actions)
-[![Docker](https://img.shields.io/badge/docker-ready-blue)](https://docker.com)
-[![Angular](https://img.shields.io/badge/Angular-19-red)](https://angular.io)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+<div align="center">
 
-Security Operations Center dashboard with threat detection dashboard and glassmorphic UI. Built for Kirov Dynamics Threat Detection & Response platform.
+![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Security](https://img.shields.io/badge/Security-SOC-ff4757?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-a78bfa?style=for-the-badge)
 
-## Features
-- **Real-time Threat Detection** - Heuristic analysis engine
-- **SOC Dashboard** - Glassmorphic UI with live metrics
-- **Alert Management** - Prioritized security event queue
-- **Incident Response** - Automated playbook execution
-- **Compliance Reporting** - Audit-ready documentation
+**Real-time Security Operations Center dashboard with threat detection and glassmorphic UI**
 
-## Tech Stack
-| Layer | Technology |
-|-------|------------|
-| Frontend | Angular 19, TypeScript, SCSS |
-| Backend | Node.js, Express |
-| Database | MongoDB |
-| Cache | Redis |
-| Container | Docker, Docker Compose |
-| Proxy | Nginx |
+[Features](#features) · [Screenshots](#screenshots) · [Quick Start](#quick-start) · [Architecture](#architecture)
 
-## Quick Start
-```bash
-# Development
-npm install
-npx ng serve
-
-# Production with Docker
-docker compose up -d
-```
-
-## Security Features
-- Input sanitization and validation
-- CORS policies configured
-- Rate limiting on API endpoints
-- Session management with JWT
-- Automated dependency scanning via Dependabot
-
-## Architecture
-```
-┌─────────────┐     ┌──────────────┐     ┌──────────┐
-│  Angular UI │────▶│  Express API │────▶│MongoDB│
-│  (Frontend) │     │  (Backend)   │     │ (State)  │
-└─────────────┘     └──────────────┘     └──────────┘
-       │                    │
-       ▼                    ▼
-┌─────────────┐     ┌──────────────┐
-│   Nginx     │     │    Redis     │
-│  (CDN/SSL)  │     │   (Cache)    │
-└─────────────┘     └──────────────┘
-```
-
-<br/>
+</div>
 
 ---
 
-<h3 align="center">🐍 Part of the <a href="https://github.com/Raphasha27">Raphasha27</a> Ecosystem</h3>
+## 🎯 Overview
 
-<p align="center">
-  <a href="https://github.com/Raphasha27/Raphasha27">
-    <img src="https://img.shields.io/badge/Back_to_Profile-0D1117?style=for-the-badge&logo=github&logoColor=white" />
-  </a>
-  &nbsp;
-  <a href="https://raphasha27.github.io/Raphasha27/ai-snake-game/">
-    <img src="https://img.shields.io/badge/▶_Play_AI_Snake-0EA5E9?style=for-the-badge&logo=javascript&logoColor=white" />
-  </a>
-</p>
+CyberShield SOC is a **Security Operations Center dashboard** designed for real-time threat monitoring, alert triage, and incident management. Built with a premium glassmorphic dark UI, it provides security analysts with an intuitive interface for managing threats across an enterprise environment.
 
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 🔴 **Real-time Alerts** | Live threat feed with severity classification (Critical/High/Medium/Low) |
+| 📊 **Threat Analytics** | Visual dashboards for attack patterns, geolocation, and vector analysis |
+| 🗺️ **Attack Map** | Global real-time visualisation of active threat sources |
+| 🤖 **AI Triage** | ML-assisted alert categorisation and false-positive reduction |
+| 📋 **Incident Management** | Full incident lifecycle — detect, contain, eradicate, recover |
+| 🔍 **Log Correlation** | SIEM-style event correlation across multiple data sources |
+| 🏷️ **MITRE ATT&CK** | Technique tagging aligned to MITRE ATT&CK framework |
+| 💎 **Glassmorphic UI** | Premium dark-mode interface with blur effects and micro-animations |
+
+---
+
+## 🖥️ Screenshots
+
+> *Dark glassmorphic SOC dashboard with real-time threat feeds, alert panels, and analytics charts*
+
+---
+
+## 🚀 Quick Start
+
+```bash
+git clone https://github.com/Raphasha27/cybershield_soc.git
+cd cybershield_soc
+
+# Install Python backend dependencies
+pip install -r requirements.txt
+
+# Start the backend API
+python app.py
+
+# Open index.html in browser or use Live Server
+open index.html
+```
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────┐
+│           CyberShield SOC UI             │
+│   (HTML/CSS/JS — Glassmorphic Dark)      │
+└────────────────┬────────────────────────┘
+                 │ REST API
+┌────────────────▼────────────────────────┐
+│         Python FastAPI Backend           │
+│  • Threat ingestion & normalisation      │
+│  • ML-based anomaly detection            │
+│  • Alert correlation engine              │
+│  • MITRE ATT&CK mapping                  │
+└────────────────┬────────────────────────┘
+                 │
+┌────────────────▼────────────────────────┐
+│     Threat Intelligence Sources          │
+│  • Simulated SIEM event streams          │
+│  • IP reputation feeds                   │
+│  • CVE/NVD vulnerability data            │
+└─────────────────────────────────────────┘
+```
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] WebSocket live alert streaming
+- [ ] SOAR playbook automation
+- [ ] Elastic Stack (ELK) integration
+- [ ] Multi-tenant support
+- [ ] Mobile-responsive analyst view
+
+---
+
+## 🤝 Contributing
+
+Issues and PRs are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+---
+
+## 📄 License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+<div align="center">
+Built by <a href="https://github.com/Raphasha27">Koketso Raphasha</a> · <a href="https://portfolio-iota-eight-90.vercel.app/">Portfolio</a>
+</div>
