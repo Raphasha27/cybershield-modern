@@ -42,12 +42,17 @@
     "zone.js": "^0.16.0"
   },
   "devDependencies": {
-    "@angular/build": "~21.2.19",
+    "@angular/build": "^20.3.33",
     "@angular/cdk": "21.2.14",
-    "@angular/cli": "~21.2.19",
+    "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "~21.2.19",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
+  },
+  "overrides": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "picomatch": "^4.0.5",
+    "ajv": "^8.20.0"
   }
 }
