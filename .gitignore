@@ -45,3 +45,10 @@ Thumbs.db
 
 # Environment files
 server/.env.production
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+!.env.example.*
+!*.env.example
