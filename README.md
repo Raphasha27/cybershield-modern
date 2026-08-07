@@ -1,3 +1,11 @@
+<div align="center">
+  <a href="https://raphasha27.github.io/cybershield_soc/">
+    <img src="https://img.shields.io/badge/LIVE_DEPLOYMENT-View_App-0EA5E9?style=for-the-badge&logo=github&logoColor=white" alt="Live Deployment" />
+  </a>
+</div>
+
+<br/>
+
 # 🔐 CyberShield SOC Dashboard
 
 [![CI](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml/badge.svg)](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml)
