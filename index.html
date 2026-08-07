@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#070b14" />
+    <meta name="description" content="CyberShield SOC — next-gen security operations center dashboard for real-time monitoring with Angular 19, D3.js, and Signals." />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>CyberShield SOC · Live Security Dashboard</title>
+    <style>
+      :root {
+        --bg: #070b14;
+        --panel: #0f1626;
+        --border: #1c2740;
+        --text: #e8eefb;
+        --dim: #8b97b8;
+        --accent: #00ff9c;
+        --accent-dim: #00c47a;
+        --alert: #ff4d6d;
+        --info: #38bdf8;
+        --radius: 14px;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { overflow-x: hidden; }
+      html, body { background: var(--bg); color: var(--text); font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+      body { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); }
+      a { color: var(--accent); text-decoration: none; }
+      .wrap { width: 100%; max-width: 480px; margin: 0 auto; padding: clamp(1rem, 5vw, 2rem) clamp(1.1rem, 5vw, 1.75rem); padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px)); flex: 1; }
+      header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 1.75rem; }
+      .logo { display: flex; align-items: center; gap: 0.65rem; min-width: 0; }
+      .logo-badge { width: 42px; height: 42px; min-width: 42px; border-radius: 12px; background: linear-gradient(135deg, #07271c, #070b14); border: 1px solid var(--accent); display: grid; place-items: center; font-size: 1.2rem; }
+      .logo h1 { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .gh-btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.6rem 0.9rem; min-height: 44px; border-radius: 10px; border: 1px solid var(--border); background: var(--panel); color: var(--text); font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+      .gh-btn svg { width: 16px; height: 16px; fill: currentColor; }
+      .hero { margin-bottom: 1.5rem; }
+      .hero .status { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent-dim); padding: 0.3rem 0.7rem; border-radius: 999px; margin-bottom: 0.9rem; }
+      .hero .status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+      .hero h2 { font-size: clamp(1.6rem, 6.5vw, 2.1rem); line-height: 1.15; font-weight: 800; letter-spacing: -0.01em; overflow-wrap: break-word; }
+      .hero h2 em { font-style: normal; color: var(--accent); }
+      .hero p { margin-top: 0.8rem; color: var(--dim); font-size: 0.95rem; line-height: 1.55; overflow-wrap: break-word; }
+      .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin: 1.5rem 0; }
+      .stat { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem 0.5rem; text-align: center; min-width: 0; }
+      .stat .num { font-size: clamp(1.2rem, 5vw, 1.5rem); font-weight: 800; font-variant-numeric: tabular-nums; }
+      .stat .lbl { font-size: 0.66rem; color: var(--dim); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.06em; overflow-wrap: break-word; }
+      .num.green { color: var(--accent); } .num.red { color: var(--alert); } .num.blue { color: var(--info); }
+      .grid { display: grid; grid-template-columns: 1fr; gap: 0.8rem; margin: 1.5rem 0; }
+      .card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.05rem; }
+      .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem; }
+      .card h3 span { font-size: 1.05rem; }
+      .card p { font-size: 0.85rem; color: var(--dim); line-height: 1.5; overflow-wrap: break-word; }
+      .cta { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.75rem; }
+      .btn { display: flex; align-items: center; justify-content: center; gap: 0.55rem; min-height: 50px; border-radius: 12px; font-weight: 700; font-size: 0.95rem; text-align: center; padding: 0.8rem 1rem; }
+      .btn-primary { background: var(--accent); color: #05170e; }
+      .btn-secondary { background: var(--panel); border: 1px solid var(--border); color: var(--text); }
+      footer { text-align: center; color: #46517a; font-size: 0.78rem; padding: 1.5rem 0 calc(0.5rem + env(safe-area-inset-bottom, 0px)); line-height: 1.6; }
+      footer a { color: #68759f; }
+      @media (min-width: 520px) { .grid { grid-template-columns: 1fr 1fr; } .wrap { max-width: 760px; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="logo">
+          <div class="logo-badge">&#128737;</div>
+          <h1>CyberShield SOC</h1>
+        </div>
+        <a class="gh-btn" href="https://github.com/Raphasha27/cybershield_soc" rel="noopener">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          View on GitHub
+        </a>
+      </header>
+
+      <section class="hero">
+        <div class="status"><span class="dot" style="background:var(--accent)"></span> SOC Online</div>
+        <h2>Real-time security monitoring with a <em>next-gen SOC dashboard</em></h2>
+        <p>CyberShield SOC visualizes live threat telemetry — alerts, endpoints, and network posture — on an Angular 19 + D3.js dashboard powered by Signals.</p>
+      </section>
+
+      <div class="stats">
+        <div class="stat"><div class="v num green">97</div><div class="lbl">Security Score</div></div>
+        <div class="stat"><div class="v num alert">14</div><div class="lbl">Open Alerts</div></div>
+        <div class="stat"><div class="v num blue">248</div><div class="lbl">Monitored</div></div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3><span>&#128737;</span> Unified Posture</h3>
+          <p>Consolidated security score across endpoints, identity, and cloud surfaces.</p>
+        </div>
+        <div class="card">
+          <h3><span>&#128276;</span> Live Alerts</h3>
+          <p>Priority-flagged detections streamed in near real time for triage.</p>
+        </div>
+        <div class="card">
+          <h3><span>&#128200;</span> D3 Visualizations</h3>
+          <p>Data-driven graphs and heat maps render SOC telemetry at a glance.</p>
+        </div>
+        <div class="card">
+          <h3><span>&#9889;</span> Angular + Signals</h3>
+          <p>Reactive, performant dashboard core built with modern Angular 19.</p>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/Raphasha27/cybershield_soc#readme" rel="noopener">Explore the repository</a>
+        <a class="btn btn-secondary" href="https://github.com/Raphasha27/cybershield_soc" rel="noopener">Star &amp; follow the project</a>
+      </div>
+    </div>
+
+    <footer>
+      CyberShield SOC &middot; Security operations monitoring<br />
+      <a href="https://github.com/Raphasha27" rel="noopener">github.com/Raphasha27</a>
+    </footer>
+  </body>
+</html>
