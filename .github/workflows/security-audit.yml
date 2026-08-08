@@ -1,4 +1,4 @@
-﻿name: "Dependency Security Audit"
+name: "Dependency Security Audit"
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     if: hashFiles('package.json') != ''
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -44,7 +44,7 @@ jobs:
     if: hashFiles('requirements.txt') != ''
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Python
         uses: actions/setup-python@v5
