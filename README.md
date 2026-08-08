@@ -122,3 +122,9 @@ MIT License — see [LICENSE](LICENSE) for details.
 <div align="center">
 Built by <a href="https://github.com/Raphasha27">Koketso Raphasha</a> · <a href="https://portfolio-iota-eight-90.vercel.app/">Portfolio</a>
 </div>
+
+## Contributors
+
+This project is developed and maintained together with the team:
+- [Raphasha27](https://github.com/Raphasha27) — Project lead & maintainer
+- [DkMash](https://github.com/DkMash) — Teammate
