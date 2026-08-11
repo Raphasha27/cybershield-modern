@@ -1,3 +1,6 @@
+
+> **Live Now:** [https://cybershieldsoc.vercel.app](https://cybershieldsoc.vercel.app)
+> Run it instantly — no setup needed. Free-tier hosted build by Kirov Dynamics.
 <div align="center">
   <a href="https://raphasha27.github.io/cybershield_soc/">
     <img src="https://img.shields.io/badge/LIVE_DEPLOYMENT-View_App-0EA5E9?style=for-the-badge&logo=github&logoColor=white" alt="Live Deployment" />
