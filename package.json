@@ -1,58 +1,58 @@
 {
-  "name": "cybershield-modern",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --configuration production",
-    "build:github-pages": "ng build --configuration github-pages",
-    "vercel-build": "ng build --configuration production",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "server": "cd server && npm run dev",
-    "server:build": "cd server && npm run build",
-    "server:start": "cd server && npm start"
-  },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
-  "private": true,
-  "packageManager": "npm@11.6.1",
-  "dependencies": {
-    "@angular/common": "~21.2.19",
-    "@angular/compiler": "~21.2.19",
-    "@angular/core": "~21.2.19",
-    "@angular/forms": "~21.2.19",
-    "@angular/platform-browser": "~21.2.19",
-    "@angular/platform-browser-dynamic": "~21.2.19",
-    "@angular/router": "~21.2.19",
-    "chart.js": "^4.5.1",
-    "ng2-charts": "^4.1.1",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "^0.16.0"
-  },
-  "devDependencies": {
-    "@angular/build": "^20.3.33",
-    "@angular/cdk": "21.2.14",
-    "@angular/cli": "^21.2.20",
-    "@angular/compiler-cli": "~21.2.19",
-    "jsdom": "^27.1.0",
-    "typescript": "~5.9.2",
-    "vitest": "^4.0.8"
-  },
-  "overrides": {
-    "@modelcontextprotocol/sdk": "^1.30.0",
-    "picomatch": "^4.0.5",
-    "ajv": "^8.20.0"
-  }
+    "name":  "cybershield-modern",
+    "version":  "0.0.0",
+    "scripts":  {
+                    "ng":  "ng",
+                    "start":  "ng serve",
+                    "build":  "ng build --configuration production",
+                    "build:github-pages":  "ng build --configuration github-pages",
+                    "vercel-build":  "ng build --configuration production",
+                    "watch":  "ng build --watch --configuration development",
+                    "test":  "ng test",
+                    "server":  "cd server \u0026\u0026 npm run dev",
+                    "server:build":  "cd server \u0026\u0026 npm run build",
+                    "server:start":  "cd server \u0026\u0026 npm start"
+                },
+    "prettier":  {
+                     "printWidth":  100,
+                     "singleQuote":  true,
+                     "overrides":  [
+                                       {
+                                           "files":  "*.html",
+                                           "options":  {
+                                                           "parser":  "angular"
+                                                       }
+                                       }
+                                   ]
+                 },
+    "private":  true,
+    "packageManager":  "npm@11.6.1",
+    "dependencies":  {
+                         "@angular/common":  "^22.0.0",
+                         "@angular/compiler":  "^22.0.0",
+                         "@angular/core":  "^22.0.0",
+                         "@angular/forms":  "^22.0.0",
+                         "@angular/platform-browser":  "^22.0.0",
+                         "@angular/platform-browser-dynamic":  "^22.0.0",
+                         "@angular/router":  "^22.0.0",
+                         "chart.js":  "^4.5.1",
+                         "ng2-charts":  "^4.1.1",
+                         "rxjs":  "~7.8.0",
+                         "tslib":  "^2.3.0",
+                         "zone.js":  "^0.16.0"
+                     },
+    "devDependencies":  {
+                            "@angular/build":  "^22.0.0",
+                            "@angular/cdk":  "^22.0.0",
+                            "@angular/cli":  "^22.0.0",
+                            "@angular/compiler-cli":  "^22.0.0",
+                            "jsdom":  "^27.1.0",
+                            "typescript":  "~5.9.2",
+                            "vitest":  "^4.0.8"
+                        },
+    "overrides":  {
+                      "@modelcontextprotocol/sdk":  "^1.30.0",
+                      "picomatch":  "^4.0.5",
+                      "ajv":  "^8.20.0"
+                  }
 }
