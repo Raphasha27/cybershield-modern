@@ -45,7 +45,7 @@
                             "@angular/build":  "^22.0.0",
                             "@angular/cdk":  "^22.0.0",
                             "@angular/cli":  "^22.0.0",
-                            "@angular/compiler-cli":  "^22.0.0",
+                            "@angular/compiler-cli":  "^22.1.1",
                             "jsdom":  "^27.1.0",
                             "typescript":  "~5.9.2",
                             "vitest":  "^4.0.8"
