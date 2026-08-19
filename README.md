@@ -123,7 +123,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 ---
 
 <div align="center">
-Built by <a href="https://github.com/Raphasha27">Koketso Raphasha</a> · <a href="https://portfolio-iota-eight-90.vercel.app/">Portfolio</a>
+Built by <a href="https://github.com/Raphasha27">Koketso Raphasha</a> · <a href="https://raphasha27.github.io/raphasha-demos/">Explore all demos in the Demos Hub</a>
 </div>
 
 ## Contributors
