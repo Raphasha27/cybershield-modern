@@ -1,3 +1,4 @@
-﻿# Code of Conduct
+# Contributor Covenant Code of Conduct
 
-Standard Code of Conduct applied.
+## Our Pledge
+We pledge to make participation in our community a harassment-free experience for everyone.
