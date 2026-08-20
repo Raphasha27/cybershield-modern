@@ -1,14 +1,11 @@
-name: "CodeQL"
-
+name: "CodeQL Advanced"
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ "main", "master" ]
   schedule:
-    - cron: "0 3 * * 1"  # Every Monday at 3am
-  workflow_dispatch:
-
+    - cron: '30 1 * * 0'
 jobs:
   analyze:
     name: Analyze
@@ -17,28 +14,18 @@ jobs:
       actions: read
       contents: read
       security-events: write
-
     strategy:
       fail-fast: false
       matrix:
-        language: [ "javascript", "python" ]
-
+        language: [ 'javascript' ]
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
-        with:
-          languages: ${{ matrix.language }}
-          queries: security-and-quality
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v4
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4
-        continue-on-error: true
-        with:
-          category: "/language:${{ matrix.language }}"
-
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:${{matrix.language}}"

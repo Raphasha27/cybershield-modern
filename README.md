@@ -1,3 +1,4 @@
+![CodeQL](https://github.com/Raphasha27/cybershield_soc/actions/workflows/codeql.yml/badge.svg)
 
 > **Live Now:** [https://cybershieldsoc.vercel.app](https://cybershieldsoc.vercel.app)
 > Run it instantly — no setup needed. Free-tier hosted build by Kirov Dynamics.
@@ -131,3 +132,4 @@ Built by <a href="https://github.com/Raphasha27">Koketso Raphasha</a> · <a href
 This project is developed and maintained together with the team:
 - [Raphasha27](https://github.com/Raphasha27) — Project lead & maintainer
 - [DkMash](https://github.com/DkMash) — Teammate
+
