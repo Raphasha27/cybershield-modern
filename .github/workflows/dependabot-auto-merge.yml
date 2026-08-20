@@ -11,15 +11,20 @@ jobs:
     if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v3
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-
-      - name: Enable auto-merge for Dependabot PRs
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
-        run: gh pr merge --auto --merge "$PR_URL"
+      - name: Gate on CI, then enable auto-merge
+        run: |
+          set +e
+          N=$(gh pr checks "$PR_URL" --json name --jq 'length' 2>/dev/null | tr -d '[:space:]')
+          if [ -z "$N" ] || [ "$N" = "0" ] || [ "$N" = "null" ]; then
+            echo "No CI checks on this PR - enabling auto-merge directly."
+          else
+            gh pr checks --watch --interval 15 --timeout 1800 "$PR_URL"
+            if [ $? -ne 0 ]; then
+              echo "::warning::CI checks not green - auto-merge skipped, retries on next PR event."
+              exit 0
+            fi
+          fi
+          gh pr merge --auto "$PR_URL" || echo "::warning::Auto-merge could not be enabled (merge conflict or repo settings) - retries on next PR event."
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
