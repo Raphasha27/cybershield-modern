@@ -1,30 +1,176 @@
-# CyberShield SOC - Real-Time Security Operations Center
+# CyberShield SOC
 
-![Go](https://img.shields.io/badge/Go-1.22-00ADD8?style=for-the-badge&logo=go)
-![WebSockets](https://img.shields.io/badge/WebSockets-Real%20Time-blue?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+### Real-time Security Operations Center with Threat Intelligence
 
-A high-performance Security Operations Center (SOC) dashboard built with a **Golang backend** and WebSockets for real-time threat intelligence streaming.
+[![CI](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml/badge.svg)](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml)
+![Go](https://img.shields.io/badge/Go-1.22-00ADD8?style=flat-square&logo=go)
+![Rust](https://img.shields.io/badge/Rust-2021-orange?style=flat-square&logo=rust)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker)
 
-## Features
-- **Real-Time Threat Streaming:** WebSocket integration (/ws/events) for pushing live attacks to the dashboard.
-- **Threat Simulation Engine:** Built-in Go routine that simulates realistic network attacks (DDoS, SQLi, Brute Force).
-- **RESTful Metrics API:** /api/metrics endpoint providing 24h threat aggregates and severity breakdowns.
-- **Containerized:** Docker & docker-compose ready.
+---
+
+## Overview
+
+CyberShield SOC is a real-time Security Operations Center that streams live threat intelligence to a browser dashboard via WebSockets. A Go backend simulates and broadcasts network attack events, while a companion Rust CLI tool performs statistical anomaly detection on threat data using z-score analysis. The entire system is containerized and CI-tested.
 
 ## Architecture
-`
-[Browser Dashboard] <--(WebSockets)--> [Go Backend] <--(Internal Channel)--> [Threat Simulator Engine]
-`
 
-## Quick Start (Docker)
-1. Clone the repository
-2. Run docker-compose up --build -d
-3. Backend runs on http://localhost:8080
+```
+┌──────────────────┐      WebSocket       ┌──────────────────┐
+│                  │ ◄──────────────────► │                  │
+│  Client Dashboard│                      │  Go Backend      │
+│  (Browser)       │                      │  WebSocket Hub   │
+│                  │                      │  REST API        │
+└──────────────────┘                      └────────┬─────────┘
+                                                   │
+                                          ┌────────▼─────────┐
+                                          │                  │
+                                          │  Threat Simulator│
+                                          │  (Go goroutine)  │
+                                          │                  │
+                                          └──────────────────┘
 
-## API Endpoints
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/health | Health check |
-| GET | /api/metrics | Retrieve SOC metrics and statistics |
-| WS | /ws/events | Connect to live threat feed |
+┌──────────────────┐      stdin (JSON)    ┌──────────────────┐
+│                  │ ◄──────────────────► │                  │
+│  Threat Events   │                      │  Rust Analyzer   │
+│  (JSON lines)    │ ──────────────────► │  Z-Score / Stats │
+│                  │    stdout (report)   │  Anomaly Scoring │
+└──────────────────┘                      └──────────────────┘
+```
+
+## Tech Stack
+
+| Component     | Technology                        |
+|---------------|-----------------------------------|
+| Backend       | Go 1.22, gorilla/websocket, gorilla/mux |
+| CLI Analyzer  | Rust 2021, serde, serde_json       |
+| Communication | WebSockets (real-time), REST (metrics) |
+| Container     | Docker, docker-compose             |
+| CI/CD         | GitHub Actions                     |
+
+## Quick Start
+
+### Docker
+
+```bash
+git clone https://github.com/Raphasha27/cybershield_soc.git
+cd cybershield_soc
+docker-compose up --build
+```
+
+Backend available at `http://localhost:8080`.
+
+### Manual Build
+
+**Go backend:**
+
+```bash
+cd backend
+go mod download
+go build -o ../bin/cybershield-server ./cmd/server
+../bin/cybershield-server
+```
+
+**Rust analyzer:**
+
+```bash
+cd tools/threat-analyzer
+cargo build --release
+echo '{"id":"THR-1","type":"DDoS","severity":"HIGH","source_ip":"10.0.0.1","timestamp":"2024-01-01T00:00:00Z","status":"ACTIVE"}' | cargo run
+```
+
+### Using Make
+
+```bash
+make lint       # Run go vet
+make test       # Run tests with race detector
+make build      # Build Go binary
+make docker-build  # Build Docker image
+make clean      # Remove build artifacts
+```
+
+## Directory Structure
+
+```
+cybershield_soc/
+├── .github/
+│   └── workflows/
+│       └── ci.yml              # CI pipeline: Go + Docker + Rust
+├── backend/
+│   ├── cmd/server/
+│   │   └── main.go             # Application entrypoint
+│   ├── internal/
+│   │   ├── handlers/
+│   │   │   ├── websocket.go    # WebSocket hub & connection management
+│   │   │   └── websocket_test.go
+│   │   ├── models/
+│   │   │   ├── threat.go       # Threat & Metrics data models
+│   │   │   └── threat_test.go
+│   │   └── services/
+│   │       ├── simulator.go    # Threat simulation engine
+│   │       └── simulator_test.go
+│   ├── Dockerfile
+│   └── go.mod
+├── tools/
+│   └── threat-analyzer/
+│       ├── src/
+│       │   └── main.rs         # Rust anomaly detection CLI
+│       └── Cargo.toml
+├── docker-compose.yml
+├── Makefile
+└── README.md
+```
+
+## API Reference
+
+### Health Check
+
+```
+GET /api/health
+Response: {"status": "ok"}
+```
+
+### Metrics
+
+```
+GET /api/metrics
+Response: {
+  "total_threats_24h": 1247,
+  "active_alerts": 23,
+  "blocked_ips": 89,
+  "severity_breakdown": {
+    "CRITICAL": 3,
+    "HIGH": 12,
+    "MEDIUM": 45,
+    "LOW": 187
+  }
+}
+```
+
+### WebSocket Threat Feed
+
+```
+WebSocket: ws://localhost:8080/ws/events
+```
+
+Connect to receive real-time threat events as JSON:
+
+```json
+{
+  "id": "THR-1718450400000000000",
+  "type": "DDoS",
+  "severity": "HIGH",
+  "source_ip": "192.168.1.105",
+  "timestamp": "2024-06-15T12:00:00Z",
+  "status": "ACTIVE"
+}
+```
+
+**Event Types:** `PortScan`, `BruteForce`, `SQLInjection`, `XSS`, `DDoS`, `MalwareC2`
+
+**Severity Levels:** `LOW`, `MEDIUM`, `HIGH`, `CRITICAL`
+
+## License
+
+MIT

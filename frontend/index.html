@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield SOC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="w-full max-w-md bg-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-800 transition-all duration-500">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-black text-cyan-400 mb-2">CyberShield SOC</h1>
+            <p class="text-gray-400">Employer & Investor Demo Access</p>
+        </div>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-400 mb-1">Demo Email</label>
+                <input type="email" id="email" value="admin@demo.com" readonly class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white outline-none focus:border-cyan-500 cursor-not-allowed">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-400 mb-1">Demo Password</label>
+                <input type="password" id="password" value="password123" readonly class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white outline-none focus:border-cyan-500 cursor-not-allowed">
+            </div>
+            
+            <button onclick="handleLogin()" class="w-full mt-6 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg transition-colors flex justify-center items-center">
+                <span id="btn-text">Sign In Securely</span>
+                <svg id="spinner" class="animate-spin ml-2 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            </button>
+            <p class="text-xs text-center text-gray-500 mt-4">Credentials are pre-filled for demo purposes.</p>
+        </div>
+    </div>
+
+    <!-- Main Dashboard (Hidden initially) -->
+    <div id="dashboard-screen" class="w-full max-w-6xl mx-auto hidden opacity-0 transition-opacity duration-700">
+        <nav class="flex justify-between items-center py-4 mb-8 border-b border-gray-800">
+            <h1 class="text-2xl font-black text-cyan-400">CyberShield SOC</h1>
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-400 text-sm">admin@demo.com</span>
+                <button onclick="handleLogout()" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm font-medium transition-colors">Logout</button>
+            </div>
+        </nav>
+        
+        <!-- Dashboard Content -->
+        
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700"><div class="text-gray-400 text-sm">Active Threats</div><div class="text-3xl font-bold text-red-500">24</div></div>
+                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700"><div class="text-gray-400 text-sm">Blocked IPs</div><div class="text-3xl font-bold text-cyan-500">1,402</div></div>
+                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700"><div class="text-gray-400 text-sm">Network Load</div><div class="text-3xl font-bold text-yellow-500">78%</div></div>
+                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700"><div class="text-gray-400 text-sm">System Status</div><div class="text-3xl font-bold text-green-500">SECURE</div></div>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl border border-gray-700">
+                <h3 class="text-lg font-bold mb-4 text-cyan-400">Live Threat Feed (WebSocket Simulator)</h3>
+                <div id="threat-feed" class="h-64 overflow-y-auto bg-gray-900 p-4 rounded font-mono text-sm space-y-2">
+                    <div class="text-red-400">[CRITICAL] Port Scan detected from 192.168.1.45 (Action: Blocked)</div>
+                    <div class="text-yellow-400">[WARNING] Multiple failed logins from 45.33.22.11</div>
+                    <div class="text-cyan-400">[INFO] Signature database updated successfully.</div>
+                </div>
+            </div>
+        
+    </div>
+
+    <script>
+        function handleLogin() {
+            document.getElementById('btn-text').innerText = 'Authenticating...';
+            document.getElementById('spinner').classList.remove('hidden');
+            
+            // Simulate network request
+            setTimeout(() => {
+                document.getElementById('login-screen').classList.add('hidden');
+                const dashboard = document.getElementById('dashboard-screen');
+                document.body.classList.remove('items-center', 'justify-center');
+                document.body.classList.add('items-start');
+                dashboard.classList.remove('hidden');
+                
+                // Trigger reflow to apply opacity transition
+                void dashboard.offsetWidth; 
+                dashboard.classList.remove('opacity-0');
+            }, 1200);
+        }
+
+        function handleLogout() {
+            document.getElementById('dashboard-screen').classList.add('hidden');
+            document.getElementById('dashboard-screen').classList.add('opacity-0');
+            document.body.classList.remove('items-start');
+            document.body.classList.add('items-center', 'justify-center');
+            
+            document.getElementById('btn-text').innerText = 'Sign In Securely';
+            document.getElementById('spinner').classList.add('hidden');
+            document.getElementById('login-screen').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
