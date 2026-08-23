@@ -73,11 +73,11 @@ fn overall_risk(severity_counts: &HashMap<String, usize>) -> String {
     let critical = severity_counts.get("CRITICAL").unwrap_or(&0usize);
     let high = severity_counts.get("HIGH").unwrap_or(&0usize);
 
-    if *critical > 5 || *high > 15 {
+    if *critical > 5_usize || *high > 15_usize {
         "CRITICAL".to_string()
-    } else if *critical > 2 || *high > 8 {
+    } else if *critical > 2_usize || *high > 8_usize {
         "HIGH".to_string()
-    } else if *high > 3 || severity_counts.get("MEDIUM").unwrap_or(&0usize) > 20 {
+    } else if *high > 3_usize || severity_counts.get("MEDIUM").unwrap_or(&0usize) > 20_usize {
         "MEDIUM".to_string()
     } else {
         "LOW".to_string()
