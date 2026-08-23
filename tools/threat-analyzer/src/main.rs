@@ -70,14 +70,14 @@ fn rate_severity(score: f64) -> String {
 }
 
 fn overall_risk(severity_counts: &HashMap<String, usize>) -> String {
-    let critical = severity_counts.get("CRITICAL").unwrap_or(&0);
-    let high = severity_counts.get("HIGH").unwrap_or(&0);
+    let critical = severity_counts.get("CRITICAL").unwrap_or(&0usize);
+    let high = severity_counts.get("HIGH").unwrap_or(&0usize);
 
     if *critical > 5 || *high > 15 {
         "CRITICAL".to_string()
     } else if *critical > 2 || *high > 8 {
         "HIGH".to_string()
-    } else if *high > 3 || severity_counts.get("MEDIUM").unwrap_or(&0) > 20 {
+    } else if *high > 3 || severity_counts.get("MEDIUM").unwrap_or(&0usize) > 20 {
         "MEDIUM".to_string()
     } else {
         "LOW".to_string()
@@ -129,8 +129,8 @@ fn main() {
     let mut anomaly_scores: Vec<AnomalyScore> = Vec::new();
 
     for event in &events {
-        let ip_freq = *ip_counts.get(&event.source_ip).unwrap_or(&0) as f64;
-        let type_freq = *type_counts.get(&event.threat_type).unwrap_or(&0) as f64;
+        let ip_freq = *ip_counts.get(&event.source_ip).unwrap_or(&0usize) as f64;
+        let type_freq = *type_counts.get(&event.threat_type).unwrap_or(&0usize) as f64;
 
         let ip_z = z_score(ip_freq, freq_mean, freq_sd);
         let type_z = z_score(type_freq, type_mean, type_sd);
