@@ -1,11 +1,12 @@
+[![CI](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml/badge.svg)](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # CyberShield SOC
 
 ### Real-time Security Operations Center with Threat Intelligence
 
-[![CI](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml/badge.svg)](https://github.com/Raphasha27/cybershield_soc/actions/workflows/ci.yml)
 ![Go](https://img.shields.io/badge/Go-1.22-00ADD8?style=flat-square&logo=go)
 ![Rust](https://img.shields.io/badge/Rust-2021-orange?style=flat-square&logo=rust)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker)
 
 ---
