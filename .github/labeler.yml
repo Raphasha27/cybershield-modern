@@ -1,0 +1,18 @@
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: ['*.md', 'docs/**']
+ci:
+  - changed-files:
+    - any-glob-to-any-file: '.github/**'
+python:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.py', 'requirements*.txt', 'pyproject.toml']
+javascript:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.ts', '**/*.tsx', '**/*.js', 'package.json']
+java:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.java', 'pom.xml', 'build.gradle']
+docker:
+  - changed-files:
+    - any-glob-to-any-file: ['Dockerfile*', 'docker-compose*']
